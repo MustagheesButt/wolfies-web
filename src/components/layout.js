@@ -1,4 +1,4 @@
-import MessengerCustomerChat from "react-messenger-customer-chat"
+// import MessengerCustomerChat from "react-messenger-customer-chat"
 import { Footer } from "./footer"
 import { Navbar } from "./navbar"
 import { SVGDefs } from "./svg_defs"

@@ -1,5 +1,5 @@
 import { Disclosure } from "@headlessui/react"
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import { Layout } from "../components/layout"
 
 import { R } from "../res/R"
