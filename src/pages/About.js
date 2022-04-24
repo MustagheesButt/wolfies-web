@@ -1,14 +1,20 @@
 import { Layout } from "../components/layout"
 
 export const About = () => {
+  const teamMembers = [
+    { id: 1, name: "Ali R.", title: "CEO", profilePhoto: "", social: { twitter: "#", linkedin: "#", instagram: "#" } },
+    { id: 2, name: "Mustaghees Butt", title: "CTO", profilePhoto: "", social: { twitter: "#", linkedin: "#", instagram: "#" } },
+    { id: 3, name: "Leo Wolfie", title: "COO", profilePhoto: "", social: { twitter: "#", linkedin: "#", instagram: "#" } },
+  ]
+
   return (
     <Layout>
-      <section className="h-[20vh] flex justify-center items-center">
-        <h1 className="text-4xl font-bold">About Us</h1>
+      <section className={`h-[50vh] flex justify-center items-center bg-cover bg-fixed bg-bottom text-white`} style={{ backgroundImage: `linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url(${process.env.PUBLIC_URL}/pexels-steve-397863.jpg)` }}>
+        <h1 className="text-5xl font-bold">About Us</h1>
       </section>
 
       <section className="w-1/2 m-auto">
-        <h2 className="text-3xl font-bold mt-10">It All Started in 1988</h2>
+        <h2 className="text-3xl font-bold mt-10">It All Started in 2017</h2>
         <p className="font-serif mt-5">WolfieSolutions was born to ease the pain and suffering of students worldwide. The academia is bombarding young souls with
           meaningless assignments and time consuming lengthy projects, which have absolute zero practical value. Fear no more, we are here to end this tyranny!</p>
         <p className="font-serif my-5">Whether you are a student who is working on a student visa, or just a regular student who is in need of some help, we are here to help. Just take our hand
@@ -16,29 +22,35 @@ export const About = () => {
         </p>
       </section>
 
-      <section className="h-[20vh] flex justify-center items-center">
-        <h1 className="text-4xl font-bold">Our Team</h1>
+      <section className="p-10 bg-gray-100 mb-10">
+        <h1 className="text-4xl font-bold text-center">Our Mission</h1>
+        <p className="font-serif mt-5">Mission statement goes here</p>
       </section>
 
-      <section className="w-1/2 m-auto">
-        <div className="flex items-center justify-center mb-10">
-          <Card title="CEO" name="NoobMaster69" />
-          <Card title="CTO" name="Syed Suma1l Hassan" />
-          <Card title="Director of Operations" name="AR15" />
+      <section className="w-2/3 m-auto">
+        <h1 className="text-4xl font-bold text-center mb-10">Our Team</h1>
+        <div className="flex flex-col md:flex-row items-center justify-center mb-10">
+          {
+            teamMembers.map(m => (
+              <Card title={m.title} name={m.name} profilePhoto={m.profilePhoto} key={m.id} />
+            ))
+          }
+          {/* <Card title="CTO" name="Syed Suma1l Hassan" />
+          <Card title="Director of Operations" name="AR15" /> */}
         </div>
       </section>
     </Layout>
   )
 }
 
-const Card = ({ title, name }) => {
+const Card = ({ title, name, profilePhoto }) => {
   return (
-    <div className="w-72 rounded-lg border shadow-md flex flex-col p-5 mr-5 bg-white">
+    <div className="w-1/3 rounded-lg border shadow-md flex flex-col p-5 mr-5 mb-5 bg-white">
 
       {/* <!-- Top Section --> */}
       <div className="flex flex-col items-center">
         <p className="mt-10 text-2xl font-light text-gray-700">{title}</p>
-        <img src={`${process.env.PUBLIC_URL}/profile.webp`} alt="" />
+        <img src={profilePhoto ? profilePhoto : `${process.env.PUBLIC_URL}/profile.webp`} alt="" />
         <p className="mt-1 text-3xl font-light text-gray-700 text-center">{name}</p>
         <div className="h-0.5 bg-gray-200 w-full my-5"></div>
       </div>
@@ -47,7 +59,7 @@ const Card = ({ title, name }) => {
       <div className="flex px-3 justify-center">
         <svg className="h-6 w-6 mr-2" role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
           <title>Twitter</title>
-          <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
+          <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z" />
         </svg>
         <svg className="h-6 w-6 mr-2" fill="lightblue" viewBox="0 0 24 24">
           <path fillRule="evenodd" d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" clipRule="evenodd"></path>
