@@ -54,6 +54,8 @@ jobs:
         key: ${{ secrets.SSH_PK }}
         script: |
           rm -rf domains/wolfiesolutions.com/public_html/wp-content/themes/wolfies/*
+    - name: Debug
+      run: ls -al
     - name: Copy new release to theme folder
       uses: appleboy/scp-action@master
       with:
@@ -61,5 +63,5 @@ jobs:
         port: ${{ secrets.SSH_PORT }}
         username: ${{ secrets.SSH_USERNAME }}
         key: ${{ secrets.SSH_PK }}
-        source: "target/*"
+        source: "wolfies/target/*"
         target: "domains/wolfiesolutions.com/public_html/wp-content/themes/wolfies/"
