@@ -19,7 +19,7 @@ export const Navbar = ({ fixed }) => {
         </Link>
 
         <Menu>
-          <Menu.Button>
+          <Menu.Button aria-label="Main menu">
             <svg aria-hidden="true" focusable="false" className="h-6 w-6">
               <use href="#menu"></use>
             </svg>
@@ -49,7 +49,7 @@ export const Navbar = ({ fixed }) => {
                     <Link to='/services/assignments' className="mr-5 hover:text-gray-900">Dissertations</Link>
                   </Menu.Item>
                   <Menu.Item>
-                    <Link to='/services/assignments' className="mr-5 hover:text-gray-900">Programming & Computer Science</Link>
+                    <Link to='/services/computer-science-programming' className="mr-5 hover:text-gray-900">Programming & Computer Science</Link>
                   </Menu.Item>
                   <Menu.Item>
                     <Link to='/plagiarism-checker' className="mr-5 hover:text-gray-900">Plagiarism Checker Tool</Link>

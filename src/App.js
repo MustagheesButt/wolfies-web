@@ -1,18 +1,36 @@
+import { useEffect } from "react"
 import { Routes, Route } from "react-router-dom"
-import { Home } from "./pages/Home";
-import { About } from "./pages/About";
-import { Contact } from "./pages/Contact";
-import { NotFound } from "./pages/NotFound";
-import './App.css';
-import { Blog } from "./pages/Blog";
+import { Home } from "./pages/Home"
+import { Services, Assignments, ComputerScience, ServicesHome } from "./pages/Services"
+import { About } from "./pages/About"
+import { Contact } from "./pages/Contact"
+import { Blog } from "./pages/Blog"
+import { FAQ } from "./pages/FAQ"
+import { NotFound } from "./pages/NotFound"
+import AOS from "aos"
+import './App.css'
+import 'aos/dist/aos.css'
+
+// Could've used descendant routes, but I think this is more managable
+// https://reactrouter.com/docs/en/v6/getting-started/overview#descendant-routes
 
 function App() {
+  useEffect(() => {
+    AOS.init()
+  }, [])
+
   return (
     <Routes>
       <Route path="/" element={<Home />} />
+      <Route path="/services" element={<Services />}>
+        <Route index element={<ServicesHome />} />
+        <Route path="assignments" element={<Assignments />} />
+        <Route path="computer-science-programming" element={<ComputerScience />} />
+      </Route>
       <Route path="/about" element={<About />} />
       <Route path="/contact" element={<Contact />} />
       <Route path="/blog" element={<Blog />} />
+      <Route path="/faq" element={<FAQ />} />
       <Route path="*" element={<NotFound />} />
     </Routes>
   );

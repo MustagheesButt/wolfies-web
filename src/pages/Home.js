@@ -1,4 +1,6 @@
 import { Disclosure } from "@headlessui/react"
+import { Player } from "@lottiefiles/react-lottie-player"
+import { Link } from "react-router-dom"
 import { useState } from "react"
 import { Layout } from "../components/layout"
 
@@ -59,23 +61,29 @@ export const Home = () => {
 
   return (
     <Layout fixedNav={false}>
-      <section className="relative bg-black">
+      <section className="relative bg-black min-h-screen">
         <video autoPlay muted loop style={{ height: "100%" }} className="mx-auto">
           <source src={`${process.env.PUBLIC_URL}/home-bg-5182689.mp4`} type="video/mp4" />
         </video>
 
         <div className="absolute top-0 right-0 bottom-0 left-0 bg-gray-800/50 text-white/90 flex flex-col justify-center items-center text-center">
           <h1 className="text-4xl md:text-6xl font-bold">{ab[0]}</h1>
-          <p className="text-2xl md:text-3xl mt-5 font-serif italic mx-10">{ab[1]}</p>
+          <p className="text-2xl md:text-3xl my-5 font-serif italic mx-10">{ab[1]}</p>
+          <div className="mt-5">
+            <a href="#quote-form" className="border-2 p-3 rounded hover:bg-white hover:text-black mr-5 transition duration-500">Let's Go</a>
+            <Link to="/services" className="bg-blue-400/30 border-2 border-blue-200 p-3 rounded hover:bg-blue-500 transition duration-500">Learn More</Link>
+          </div>
         </div>
       </section>
 
-      <section className="">
+      <section className="flex flex-col-reverse md:flex-col">
         <div className="py-10 px-5">
-          <h1 className="text-4xl font-bold text-center">Trusted By</h1>
-          <h2 className="text-center">Students & Faculty at</h2>
+          <div data-aos="fade-up">
+            <h1 className="text-4xl font-bold text-center mb-3">Trusted By</h1>
+            <h2 className="text-center">Students & Faculty at</h2>
+          </div>
 
-          <div className="flex h-20 overflow-x-scroll mt-10 md:justify-around">
+          <div className="flex h-20 overflow-x-scroll mt-10 md:justify-around" data-aos="fade-up">
             <img src={R.images.harvard.src} alt={R.images.harvard.alt} className="mr-5" />
             <img src={R.images.uni_sydney.src} alt={R.images.uni_sydney.alt} className="mr-5" />
             <img src={R.images.princeton.src} alt={R.images.princeton.alt} className="mr-5" />
@@ -84,16 +92,21 @@ export const Home = () => {
           </div>
         </div>
 
-        <div className="p-10">
-          <h1 className="text-4xl font-bold mb-5 text-center">Expertise! From The Experts!</h1>
-          <h2 className="text-3xl font-bold mb-5 text-center">Get Help Now</h2>
+        <div className="flex flex-col md:flex-row p-10 justify-around">
+          <div className="text-center md:text-left">
+            <Player src="https://assets6.lottiefiles.com/packages/lf20_calza6zj.json" style={{ width: "400px", height: "400px" }} autoplay loop />
+            <h1 className="text-4xl font-bold my-5 text-gray-800">Expertise! From The Experts!</h1>
+            <p className="text-gray-600 mb-5">Long ass text to convince customer to submit form</p>
+          </div>
 
-          <form className="w-full max-w-sm m-auto">
+          <form className="w-full max-w-md m-auto" id="quote-form">
             <div className="mb-6">
+              <label className="hidden">Email</label>
               <input type="email" name="email" placeholder="Email" className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" />
             </div>
 
             <div className="mb-6">
+              <label className="hidden">Subject/Course Code</label>
               <input type="text" name="subject" placeholder="Subject/Course Code" className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" />
             </div>
 
@@ -113,8 +126,10 @@ export const Home = () => {
             </div>
 
             <div className="mb-6">
-              <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="deadline">Deadline</label>
-              <input type="datetime-local" name="deadline" className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" />
+              <label className="block text-gray-700 text-sm font-bold mb-2">
+                Deadline
+                <input type="datetime-local" name="deadline" className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" />
+              </label>
             </div>
 
             <div className="mb-6">
@@ -124,6 +139,7 @@ export const Home = () => {
             </div>
 
             <div className="mb-6">
+              <label className="hidden">Description</label>
               <textarea name="description" placeholder="Description - Any other notes you might want to add" rows="4" className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"></textarea>
 
               <div className="flex justify-center mt-8">
@@ -160,8 +176,8 @@ export const Home = () => {
             </div>
 
             <div>
-              <button className="bg-gray-300 hover:bg-purple-400 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center" type="submit">
-                <span>Submit</span>
+              <button className="bg-blue-300 hover:bg-blue-400 text-gray-900 font-bold py-2 px-4 rounded inline-flex items-center" type="submit">
+                <span>Get Quote</span>
               </button>
             </div>
           </form>
@@ -172,21 +188,21 @@ export const Home = () => {
         <h1 className="text-4xl font-bold text-center">Features</h1>
 
         <div className="flex flex-col md:flex-row justify-around items-center my-10">
-          <div className="md:mr-10 mb-5">
+          <div className="md:mr-10 mb-5" data-aos="fade-up" data-aos-delay="0">
             <svg className="h-10 w-10 m-auto">
               <use href="#document-search" />
             </svg>
             Guaranteed Plagiarism Free
           </div>
 
-          <div className="md:mr-10 mb-5">
+          <div className="md:mr-10 mb-5" data-aos="fade-up" data-aos-delay="300">
             <svg className="h-10 w-10 m-auto">
               <use href="#document-report" />
             </svg>
             TurnitIn Report
           </div>
 
-          <div className="md:mr-10 mb-5">
+          <div className="md:mr-10 mb-5" data-aos="fade-up" data-aos-delay="600">
             <svg className="h-10 w-10 m-auto">
               <use href="#user-group" />
             </svg>
@@ -200,10 +216,10 @@ export const Home = () => {
 
         <div className="flex flex-wrap justify-center">
           {
-            featuredServices.map(s => (
-              <div className="mr-5 mb-5 block rounded-lg shadow-lg bg-white max-w-sm text-center" key={s[0]}>
+            featuredServices.map((s, index) => (
+              <div className="mr-5 mb-5 block rounded-lg shadow-lg bg-white max-w-sm text-center" key={s[0]} data-aos="flip-right" data-aos-delay={(index + 1) * 300}>
                 <div className="p-6">
-                  <h5 className="text-gray-900 text-xl font-medium mb-2">{s[0]}</h5>
+                  <h2 className="text-gray-900 text-xl font-medium mb-2">{s[0]}</h2>
                   <p className="text-gray-700 text-base mb-4">
                     {s[1]}
                   </p>
@@ -263,9 +279,9 @@ export const Home = () => {
           {
             customerReviews.map(r => (
               <div className="shrink-0 mr-10 relative flex flex-col md:flex-row md:max-w-xl rounded-lg bg-white shadow-lg" key={r.id}>
-                <img className="object-cover w-24 h-24 absolute -left-6 top-7 rounded-full" src={r.customerPhoto ? r.customerPhoto : `${process.env.PUBLIC_URL}/profile.webp`} alt="" />
+                <img className="object-cover w-24 h-24 absolute -left-6 top-7 rounded-full" src={r.customerPhoto ? r.customerPhoto : `${process.env.PUBLIC_URL}/static/images/profile.webp`} alt="" />
                 <div className="p-6 pl-24 flex flex-col justify-start">
-                  <h5 className="text-gray-900 text-xl font-medium mb-2">{r.title}</h5>
+                  <h2 className="text-gray-900 text-xl font-medium mb-2">{r.title}</h2>
                   <p className="text-gray-700 text-base mb-4">
                     {r.description}
                   </p>
