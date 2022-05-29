@@ -9,7 +9,7 @@ export const Contact = () => {
 
   return (
     <Layout>
-      <section className="flex flex-col md:flex-row-reverse justify-around">
+      <section className="flex flex-col md:flex-row-reverse justify-around py-14 bg-blue-100">
         <Player src="https://assets10.lottiefiles.com/packages/lf20_isbiybfh.json" style={{ width: "400px", height: "400px" }} autoplay loop />
         <div className="flex flex-col justify-center w-1/3">
           <h1 className="text-4xl font-bold mb-5">Contact Us Now</h1>
@@ -17,7 +17,7 @@ export const Contact = () => {
         </div>
       </section>
 
-      <section className="flex justify-around mb-5">
+      <section className="flex justify-around my-10">
         <div>
           <h2 className="text-3xl font-bold mb-5">Contact/WhatsApp</h2>
           <ul>
@@ -33,7 +33,23 @@ export const Contact = () => {
       <section className="text-center">
         <h2 className="text-2xl font-bold">info@wolfiesolutions.com</h2>
         <div>
-          social links
+          <a href="https://facebook.com" target='_blank' rel="noreferrer">
+            <svg className="w-3 h-3">
+              <use id="facebook" />
+            </svg>
+          </a>
+
+          <a href="https://facebook.com" target='_blank' rel="noreferrer">
+            <svg className="w-3 h-3">
+              <use id="facebook" />
+            </svg>
+          </a>
+
+          <a href="https://instagram.com" target='_blank' rel="noreferrer">
+            <svg className="w-3 h-3">
+              <use id="instagram" />
+            </svg>
+          </a>
         </div>
       </section>
     </Layout>

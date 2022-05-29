@@ -8,6 +8,7 @@ export const Navbar = ({ fixed }) => {
   }
 
   return (
+    // {showLoginModal ? <LoginModal closeCb={() => setShowLoginModal(false)} /> : ''}
     <nav className={`${classes}`}>
       <div className="basis-full p-3 text-center bg-red-500 text-white">
         Summer sale - 20% off on all services!
@@ -75,3 +76,36 @@ export const Navbar = ({ fixed }) => {
     </nav>
   )
 }
+
+// const LoginModal = ({ closeCb }) => {
+//   const email = useRef(null)
+//   const password = useRef(null)
+
+//   const loginMutation = useMutation(() => {
+//     return fetch(`https://wolfiesolutions.com/?rest_route=/cw/v1/auth&email=${email.current.value}&password=${password.current.value}`, { method: "POST" })
+//   })
+
+//   return (
+//     <div onClick={(e) => !isOrIsChildOf(e.target, "#loginModal") && closeCb()} className="grid place-content-center fixed top-0 right-0 left-0 bottom-0 bg-black/50 backdrop-blur">
+//       <div id="loginModal" className="bg-white dark:bg-slate-900/50 p-20">
+//         <h3 className="mb-3">Login</h3>
+//         <div className="mb-3">
+//           <input ref={email} placeholder="you@example.com" type='email' className="p-2 dark:bg-slate-800" />
+//         </div>
+//         <div className="mb-3">
+//           <input ref={password} placeholder="Password" type='password' className="p-2 dark:bg-slate-800" />
+//         </div>
+//         <button type="submit" onClick={loginMutation.mutate}>Login</button>
+//       </div>
+//     </div>
+//   )
+// }
+
+// const isOrIsChildOf = (ele, target) => {
+//   target = typeof target === "string" ? document.querySelector(target) : target
+//   const children = [...target.children]
+
+//   if (target === ele || children.indexOf(ele) !== -1)
+//     return true
+//   return children.some((x) => isOrIsChildOf(ele, x))
+// }
