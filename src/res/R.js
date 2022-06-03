@@ -1,9 +1,11 @@
 import { images } from "./images"
 import { anim } from "./anim"
+import { accents } from "./accents"
 
 export const R = {
   images,
   anim,
+  accents,
   faqQuestions: [
     ["Why Should I Choose WolfieSolutions' Help?", "WolfieSolutions is one such website that has 2500+ experts having in-depth knowledge and years of experience. We guarantee every student to provide with high-quality assignments. We provide a number of exclusive features that allow a student to have complete solution to all their writing issues. We have been trusted by millions of students with their assignment writing work throughout the world. You should choose us because we provide you with what you exactly need."],
     ["What Services Do You Provide Other Than Assignment Writing?", "At WolfieSolutions, you will get a wide variety of services, such as assignment writing, essay writing, dissertation writing, thesis writing, homework writing, coursework writing, resume writing, PPT making, poster making, online exam help, and many others. You can check out our 'Services' section to get an insight of everything that we offer to students."],

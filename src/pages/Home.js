@@ -3,6 +3,7 @@ import { Player } from "@lottiefiles/react-lottie-player"
 import { Link } from "react-router-dom"
 import { useEffect, useState } from "react"
 import { Layout } from "../components/layout"
+import { Reviews, fetchReviews } from "../components/reviews"
 
 import { R } from "../res/R"
 
@@ -23,22 +24,17 @@ export const Home = () => {
   // ]
 
   useEffect(() => {
-    async function fetchReviews() {
-      const resp = await fetch(`${process.env.REACT_APP_API_URL}/wp/v2/reviews?_embed=wp:featuredmedia`)
-      const data = await resp.json()
-
-      setCustomerReviews(data)
-    }
-
-    fetchReviews()
+    fetchReviews(setCustomerReviews, 3)
 
     function setBgVid() {
       const vidSrc = document.querySelector('video source')
+      const full = `${process.env.REACT_APP_UPLOADS_DIR}/2022/05/Full-Ad.webm`
+      const mobile = `${process.env.REACT_APP_UPLOADS_DIR}/2022/05/Full-Ad-Mobile.webm`
 
-      if (window.screen.availWidth <= 480) {
-        vidSrc.src = `${process.env.REACT_APP_UPLOADS_DIR}/2022/05/Full-Ad-Mobile.webm`
-      } else {
-        vidSrc.src = `${process.env.REACT_APP_UPLOADS_DIR}/2022/05/Full-Ad.webm`
+      if (window.screen.availWidth <= 480 && vidSrc.src !== mobile) {
+        vidSrc.src = mobile
+      } else if (vidSrc.src !== full) {
+        vidSrc.src = full
       }
       document.querySelector('video').load()
     }
@@ -52,6 +48,11 @@ export const Home = () => {
     vid.onplaying = () => {
       vid.parentElement.classList.remove('min-h-screen')
     }
+
+    // TODO chagne text according to time
+    setInterval(() => {
+      console.log(vid.currentTime)
+    }, 1000)
   }, [])
 
   const featuredServices = [
@@ -221,7 +222,7 @@ export const Home = () => {
 
             <h3 className="font-bold text-center mt-5">Guaranteed Plagiarism Free</h3>
             <p className="text-center">
-              Lorem ipsum donor consit Lorem ipsum donor consit Lorem ipsum donor consit
+              We ensure projects delivered by us are original, organized, and written from scratch.
             </p>
           </div>
 
@@ -232,7 +233,7 @@ export const Home = () => {
 
             <h3 className="font-bold text-center mt-5">TurnitIn Report</h3>
             <p className="text-center">
-              Lorem ipsum donor consit Lorem ipsum donor consit Lorem ipsum donor consit
+              To ensure originality, we provide our customers a free TurnitIn report.
             </p>
           </div>
 
@@ -243,7 +244,7 @@ export const Home = () => {
 
             <h3 className="font-bold text-center mt-5">24x7 Customer Support</h3>
             <p className="text-center">
-              Lorem ipsum donor consit Lorem ipsum donor consit Lorem ipsum donor consit
+              We work around the clock to guarantee that your assignments get submitted on time.
             </p>
           </div>
         </div>
@@ -275,65 +276,53 @@ export const Home = () => {
         <h1 className="text-4xl font-bold text-center mb-3">Frequently Asked Questions</h1>
         <p className="text-center mb-10">If you have more questions, head over to <Link to='/contact' className="text-blue-500">contact us</Link> page.</p>
 
-        <div className="">
-          {
-            R.faqQuestions.slice(0, 6).map(f => (
-              <Disclosure as="div" className="mt-2" key={f[0]}>
-                <Disclosure.Button className="flex justify-between w-full px-4 py-2 text-sm font-medium text-left text-blue-900 bg-blue-100 rounded-lg hover:bg-blue-200 focus:outline-none focus-visible:ring focus-visible:ring-blue-500 focus-visible:ring-opacity-75">
-                  <span>{f[0]}</span>
-                  <svg className="transform rotate-180 w-6 h-6 text-blue-500">
-                    <use href="#dropdown" />
-                  </svg>
-                </Disclosure.Button>
-                <Disclosure.Panel>
-                  <article className="p-4">{f[1]}</article>
-                </Disclosure.Panel>
-              </Disclosure>)
-            )
-          }
-        </div>
+        <div className="flex flex-col md:flex-row">
 
-        <div className="">
-          {
-            R.faqQuestions.slice(6).map(f => (
-              <Disclosure as="div" className="mt-2" key={f[0]}>
-                <Disclosure.Button className="flex justify-between w-full px-4 py-2 text-sm font-medium text-left text-blue-900 bg-blue-100 rounded-lg hover:bg-blue-200 focus:outline-none focus-visible:ring focus-visible:ring-blue-500 focus-visible:ring-opacity-75">
-                  <span>{f[0]}</span>
-                  <svg className="transform rotate-180 w-6 h-6 text-blue-500">
-                    <use href="#dropdown" />
-                  </svg>
-                </Disclosure.Button>
-                <Disclosure.Panel>
-                  <article className="p-4">{f[1]}</article>
-                </Disclosure.Panel>
-              </Disclosure>)
-            )
-          }
+          <div className="md:w-1/2 md:mr-5">
+            {
+              R.faqQuestions.slice(0, 6).map(f => (
+                <Disclosure as="div" className="mt-2" key={f[0]}>
+                  <Disclosure.Button className="flex justify-between w-full px-4 py-2 text-sm font-medium text-left text-blue-900 bg-blue-100 rounded-lg hover:bg-blue-200 focus:outline-none focus-visible:ring focus-visible:ring-blue-500 focus-visible:ring-opacity-75">
+                    <span>{f[0]}</span>
+                    <svg className="transform rotate-180 w-6 h-6 text-blue-500">
+                      <use href="#dropdown" />
+                    </svg>
+                  </Disclosure.Button>
+                  <Disclosure.Panel>
+                    <article className="p-4">{f[1]}</article>
+                  </Disclosure.Panel>
+                </Disclosure>)
+              )
+            }
+          </div>
+
+          <div className="md:w-1/2">
+            {
+              R.faqQuestions.slice(6).map(f => (
+                <Disclosure as="div" className="mt-2" key={f[0]}>
+                  <Disclosure.Button className="flex justify-between w-full px-4 py-2 text-sm font-medium text-left text-blue-900 bg-blue-100 rounded-lg hover:bg-blue-200 focus:outline-none focus-visible:ring focus-visible:ring-blue-500 focus-visible:ring-opacity-75">
+                    <span>{f[0]}</span>
+                    <svg className="transform rotate-180 w-6 h-6 text-blue-500">
+                      <use href="#dropdown" />
+                    </svg>
+                  </Disclosure.Button>
+                  <Disclosure.Panel>
+                    <article className="p-4">{f[1]}</article>
+                  </Disclosure.Panel>
+                </Disclosure>)
+              )
+            }
+          </div>
         </div>
       </section>
 
       {customerReviews.length > 0 ?
-      <section className="pt-10 pb-20 bg-gray-100">
-        <h1 className="text-4xl font-bold text-center mb-3">Customer Reviews</h1>
-        <p className="text-center">Some of the amazing things our customers have to say about us.</p>
+        <section className="pt-10 pb-20 bg-gray-100">
+          <h1 className="text-4xl font-bold text-center mb-3">Customer Reviews</h1>
+          <p className="text-center">Some of the amazing things our customers have to say about us.</p>
 
-        <div className="flex overflow-x-scroll p-10">
-          {
-            customerReviews.map(r => (
-              <div className="shrink-0 mr-10 relative flex flex-col md:flex-row md:max-w-xl rounded-lg bg-white shadow-lg" key={r.id}>
-                <img className="object-cover w-24 h-24 absolute -left-6 top-7 rounded-full" src={
-                    r._embedded ? r._embedded['wp:featuredmedia'][0].media_details.sizes.thumbnail.source_url : `${process.env.PUBLIC_URL}/static/images/profile.webp`
-                  } alt="" />
-                <div className="p-6 pl-24 flex flex-col justify-start">
-                  <h2 className="text-gray-900 text-xl font-medium mb-2">{r.title.rendered}</h2>
-                  <p className="text-gray-700 text-base mb-4" dangerouslySetInnerHTML={{__html: r.content.rendered}}></p>
-                  <p className="text-gray-600 text-xs">{r.acf.customer_name}</p>
-                </div>
-              </div>
-            ))
-          }
-        </div>
-      </section> : ''
+          <Reviews reviews={customerReviews} />
+        </section> : ''
       }
     </Layout >
   )

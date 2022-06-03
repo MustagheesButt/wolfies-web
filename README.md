@@ -8,3 +8,7 @@ After cloning, run:
 ## Building for Wordpress
 
 Run `npm run build`
+
+## Deployment
+
+Commits pushed to master are deployed automatically using Github Workflows.
