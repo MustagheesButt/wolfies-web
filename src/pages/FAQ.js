@@ -1,15 +1,15 @@
 import { Link } from "react-router-dom"
 import { Player } from "@lottiefiles/react-lottie-player"
-import { Disclosure } from "@headlessui/react"
 import { Head } from "../components/head"
 import { Layout } from "../components/layout"
 import { R } from "../res/R"
+import { FAQSection } from "../components/faq_section"
 
 export const FAQ = () => {
   return (
     <Layout>
       <Head title="FAQ" />
-      <section className="flex flex-col md:flex-row-reverse justify-around">
+      <section className="flex flex-col md:flex-row-reverse justify-around py-10">
         <Player src="https://assets3.lottiefiles.com/private_files/lf30_GjhcdO.json" />
         <div className="flex flex-col justify-center w-1/3">
           <h1 className="text-5xl font-bold mb-5">Frequently Asked Questions</h1>
@@ -18,41 +18,7 @@ export const FAQ = () => {
       </section>
 
       <section className="p-10">
-        <div className="">
-          {
-            R.faqQuestions.slice(0, 6).map(f => (
-              <Disclosure as="div" className="mt-2" key={f[0]}>
-                <Disclosure.Button className="flex justify-between w-full px-4 py-2 text-sm font-medium text-left text-blue-900 bg-blue-100 rounded-lg hover:bg-blue-200 focus:outline-none focus-visible:ring focus-visible:ring-blue-500 focus-visible:ring-opacity-75">
-                  <span>{f[0]}</span>
-                  <svg className="transform rotate-180 w-6 h-6 text-blue-500">
-                    <use href="#dropdown" />
-                  </svg>
-                </Disclosure.Button>
-                <Disclosure.Panel>
-                  <article className="p-4">{f[1]}</article>
-                </Disclosure.Panel>
-              </Disclosure>)
-            )
-          }
-        </div>
-
-        <div className="">
-          {
-            R.faqQuestions.slice(6).map(f => (
-              <Disclosure as="div" className="mt-2" key={f[0]}>
-                <Disclosure.Button className="flex justify-between w-full px-4 py-2 text-sm font-medium text-left text-blue-900 bg-blue-100 rounded-lg hover:bg-blue-200 focus:outline-none focus-visible:ring focus-visible:ring-blue-500 focus-visible:ring-opacity-75">
-                  <span>{f[0]}</span>
-                  <svg className="transform rotate-180 w-6 h-6 text-blue-500">
-                    <use href="#dropdown" />
-                  </svg>
-                </Disclosure.Button>
-                <Disclosure.Panel>
-                  <article className="p-4">{f[1]}</article>
-                </Disclosure.Panel>
-              </Disclosure>)
-            )
-          }
-        </div>
+        <FAQSection questionNAnswers={R.faqQuestions} />
       </section>
 
       <section className="my-10">

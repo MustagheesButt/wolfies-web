@@ -1,4 +1,3 @@
-import { Disclosure } from "@headlessui/react"
 import { Player } from "@lottiefiles/react-lottie-player"
 import { Link } from "react-router-dom"
 import { useEffect, useState } from "react"
@@ -6,22 +5,19 @@ import { Layout } from "../components/layout"
 import { Reviews, fetchReviews } from "../components/reviews"
 
 import { R } from "../res/R"
+import { FAQSection } from "../components/faq_section"
 
 export const Home = () => {
-  const AB = [
+  const vidTitles = [
+    ["Tired Of Boring Assignments?", "Have other things that need your time and attention?"],
+    ["Feeling Stressed Out?", "Have other things that need your time and attention?"],
+    ["Don't Let Studies Stress You", "Enjoy your life while we take care of the stress work."],
     ["You've Got Better Things To Do", "Save your precious time. Let us handle your assignments & projects."],
-    ["Don't Let Studies Stress You", "Enjoy your life while we take care of the stress work."]
   ]
-  const ab = AB[parseInt(Math.random() * 10) % 2]
+  const [currentTitle, setCurrentTitle] = useState(0)
   const [pageCount, setPageCount] = useState(1)
 
   const [customerReviews, setCustomerReviews] = useState([])
-  // [
-  //   { id: 1, title: "Excellet service!", description: "I was very satisfied with the result, got 90% in my assignment.", customerName: "Hope Dworaczyk", customerPhoto: "https://mdbootstrap.com/wp-content/uploads/2020/06/vertical.jpg", rating: 5 },
-  //   { id: 2, title: "Got 90%! Wew", description: "I would've been happy even if i got just 60%. Will work with them again", customerName: "John Rich", rating: 5 },
-  //   { id: 3, title: "Excellet service!", description: "I was very satisfied with the result, got 90% in my assignment.", customerName: "Gary", rating: 5 },
-  //   { id: 4, title: "Excellet service!", description: "I was very satisfied with the result, got 90% in my assignment.", customerName: "DJ Trump", rating: 5 }
-  // ]
 
   useEffect(() => {
     fetchReviews(setCustomerReviews, 3)
@@ -49,10 +45,21 @@ export const Home = () => {
       vid.parentElement.classList.remove('min-h-screen')
     }
 
-    // TODO chagne text according to time
-    setInterval(() => {
-      console.log(vid.currentTime)
+    const idx = setInterval(() => {
+      if (vid.currentTime < 4) {
+        setCurrentTitle(0)
+      } else if (vid.currentTime < 12) {
+        setCurrentTitle(1)
+      }else if (vid.currentTime < 31) {
+        setCurrentTitle(2)
+      } else if (vid.currentTime < 47) {
+        setCurrentTitle(3)
+      }
     }, 1000)
+
+    return () => {
+      clearInterval(idx)
+    }
   }, [])
 
   const featuredServices = [
@@ -80,13 +87,13 @@ export const Home = () => {
   return (
     <Layout fixedNav={false}>
       <section className="relative bg-black min-h-screen">
-        <video autoPlay muted loop style={{ height: "100%" }} className="mx-auto">
+        <video autoPlay muted loop style={{ height: "100%" }} className="mx-auto" poster={`${process.env.PUBLIC_URL}/static/images/poster.webp`}>
           <source src='' type="video/webm" />
         </video>
 
         <div className="absolute top-0 right-0 bottom-0 left-0 bg-gray-800/50 text-white/90 flex flex-col justify-center items-center text-center">
-          <h1 className="text-4xl md:text-6xl font-bold">{ab[0]}</h1>
-          <p className="text-2xl md:text-3xl my-5 font-serif italic mx-10">{ab[1]}</p>
+          <h1 className="text-4xl md:text-6xl font-bold">{vidTitles[currentTitle][0]}</h1>
+          <p className="text-2xl md:text-3xl my-5 font-serif italic mx-10">{vidTitles[currentTitle][1]}</p>
           <div className="mt-5">
             <a href="#quote-form" className="border-2 p-3 rounded hover:bg-white hover:text-black mr-5 transition duration-500">I'm Feeling Lucky</a>
             <Link to="/services" className="bg-blue-400/30 border-2 border-blue-200 p-3 rounded hover:bg-blue-500 transition duration-500">Learn More</Link>
@@ -115,13 +122,29 @@ export const Home = () => {
             <Player src="https://assets6.lottiefiles.com/packages/lf20_calza6zj.json" className="max-w-[400px]" autoplay loop />
 
             <h1 className="text-4xl font-bold my-5 text-gray-800">Expertise! From The Experts!</h1>
-            <p className="text-gray-600 mb-5 w-2/3">Whether you are running short on a deadline or looking for the highest grade quality content, our experts have got you covered. So sit back and relax!</p>
+            <p className="text-gray-600 mb-5 w-2/3">Whether you are running short on a deadline or looking for the highest grade quality content,
+            our team of 1000+ industry-leading professionals, PhD professors and field experts have got you covered. So sit back and relax!</p>
             <ul className="text-gray-600">
-              <li>Unlimited Revisions</li>
-              <li>Quality Check</li>
-              <li>Privacy & Security</li>
-              <li>100% Unique Assignments</li>
-              <li>Timely Project Deliveries</li>
+              <li className="mb-1">
+                <svg className="h-5 w-5 inline text-green-500 mr-1"><use href="#badge-check-s" /></svg>
+                Unlimited Revisions
+              </li>
+              <li className="mb-1">
+                <svg className="h-5 w-5 inline text-green-500 mr-1"><use href="#badge-check-s" /></svg>
+                Quality Control
+              </li>
+              <li className="mb-1">
+                <svg className="h-5 w-5 inline text-green-500 mr-1"><use href="#badge-check-s" /></svg>
+                Privacy & Security
+              </li>
+              <li className="mb-1">
+                <svg className="h-5 w-5 inline text-green-500 mr-1"><use href="#badge-check-s" /></svg>
+                100% Unique Assignments
+              </li>
+              <li className="mb-1">
+                <svg className="h-5 w-5 inline text-green-500 mr-1"><use href="#badge-check-s" /></svg>
+                Timely Project Deliveries
+              </li>
             </ul>
           </div>
 
@@ -276,44 +299,7 @@ export const Home = () => {
         <h1 className="text-4xl font-bold text-center mb-3">Frequently Asked Questions</h1>
         <p className="text-center mb-10">If you have more questions, head over to <Link to='/contact' className="text-blue-500">contact us</Link> page.</p>
 
-        <div className="flex flex-col md:flex-row">
-
-          <div className="md:w-1/2 md:mr-5">
-            {
-              R.faqQuestions.slice(0, 6).map(f => (
-                <Disclosure as="div" className="mt-2" key={f[0]}>
-                  <Disclosure.Button className="flex justify-between w-full px-4 py-2 text-sm font-medium text-left text-blue-900 bg-blue-100 rounded-lg hover:bg-blue-200 focus:outline-none focus-visible:ring focus-visible:ring-blue-500 focus-visible:ring-opacity-75">
-                    <span>{f[0]}</span>
-                    <svg className="transform rotate-180 w-6 h-6 text-blue-500">
-                      <use href="#dropdown" />
-                    </svg>
-                  </Disclosure.Button>
-                  <Disclosure.Panel>
-                    <article className="p-4">{f[1]}</article>
-                  </Disclosure.Panel>
-                </Disclosure>)
-              )
-            }
-          </div>
-
-          <div className="md:w-1/2">
-            {
-              R.faqQuestions.slice(6).map(f => (
-                <Disclosure as="div" className="mt-2" key={f[0]}>
-                  <Disclosure.Button className="flex justify-between w-full px-4 py-2 text-sm font-medium text-left text-blue-900 bg-blue-100 rounded-lg hover:bg-blue-200 focus:outline-none focus-visible:ring focus-visible:ring-blue-500 focus-visible:ring-opacity-75">
-                    <span>{f[0]}</span>
-                    <svg className="transform rotate-180 w-6 h-6 text-blue-500">
-                      <use href="#dropdown" />
-                    </svg>
-                  </Disclosure.Button>
-                  <Disclosure.Panel>
-                    <article className="p-4">{f[1]}</article>
-                  </Disclosure.Panel>
-                </Disclosure>)
-              )
-            }
-          </div>
-        </div>
+        <FAQSection questionNAnswers={R.faqQuestions} />
       </section>
 
       {customerReviews.length > 0 ?

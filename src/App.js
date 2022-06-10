@@ -4,7 +4,7 @@ import { Home } from "./pages/Home"
 import { Services, Assignments, ComputerScience, ServicesHome } from "./pages/Services"
 import { About } from "./pages/About"
 import { Contact } from "./pages/Contact"
-import { Blog } from "./pages/Blog"
+import { Blog, BlogPost } from "./pages/Blog"
 import { FAQ } from "./pages/FAQ"
 import { NotFound } from "./pages/NotFound"
 import AOS from "aos"
@@ -29,11 +29,14 @@ function App() {
       </Route>
       <Route path="/about" element={<About />} />
       <Route path="/contact" element={<Contact />} />
-      <Route path="/blog" element={<Blog />} />
+      <Route path="/blog">
+        <Route index element={<Blog />} />
+        <Route path=":slug" element={<BlogPost />} />
+      </Route>
       <Route path="/faq" element={<FAQ />} />
       <Route path="*" element={<NotFound />} />
     </Routes>
-  );
+  )
 }
 
 export default App;
