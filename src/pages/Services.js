@@ -7,7 +7,8 @@ import { Layout } from "../components/layout"
 import { R } from "../res/R"
 import { fetchReviews, Reviews } from "../components/reviews"
 import { fetchPosts, Posts } from "../components/posts"
-import { FAQSection } from "../components/faq_section"
+import { fetchSamples, Samples } from "../components/samples"
+import { FAQSection } from "../components/faqSection"
 
 export const Services = () => {
   return (
@@ -74,20 +75,22 @@ export const ServicesHome = () => {
 export const Assignments = () => {
   const [reviews, setReviews] = useState([])
   const [posts, setPosts] = useState([])
+  const [samples, setSamples] = useState([])
 
   useEffect(() => {
     fetchReviews(setReviews, [5])
     fetchPosts(setPosts, 5)
+    fetchSamples(setSamples, 5)
   }, [])
 
   const services = [
-    { title: "Law Assignments", desc: "", icon: "#chart-bar-s" },
-    { title: "MBA", desc: "", icon: "#cloud-s" },
-    { title: "Psychology", desc: "", icon: "#globe" },
+    { title: "Law Assignments", desc: "", icon: "#shield-exclamation" },
+    { title: "MBA", desc: "", icon: "#briefcase" },
+    { title: "Psychology", desc: "", icon: "#users" },
     { title: "Medical Assignments", desc: "", icon: "#database" },
     { title: "Nursing Dissertation", desc: "", icon: "#share" },
     { title: "Essay Writing", desc: "", icon: "#lock-open" },
-    { title: "IT", desc: "", icon: "#variable" },
+    { title: "IT", desc: "", icon: "#globe" },
     { title: "Architecture", desc: "", icon: "#mobile-s" },
     { title: "Arts & Literature", desc: "", icon: "#desktop-computer" },
   ]
@@ -107,8 +110,8 @@ export const Assignments = () => {
         <h2 className="text-3xl font-bold text-center mb-5">Why Do People Need Online Assignment Help?</h2>
         <div className="text-center w-1/3 m-auto">
           <p className="mb-5">A lot of people go to other countries to get jobs in order to support their families,
-          but very often they don't get visas. So they apply on study visa, then start working jobs. Now these hard working people
-          don't have the time to work on bullshit assignments, projects and presentations. That's when assignment help services come in play</p>
+            but very often they don't get visas. So they apply on study visa, then start working jobs. Now these hard working people
+            don't have the time to work on bullshit assignments, projects and presentations. That's when assignment help services come in play</p>
           <Link to='/blog/why-do-people-need-online-assignment-help' className="font-bold">Read More</Link>
         </div>
       </section>
@@ -116,8 +119,8 @@ export const Assignments = () => {
       <section className="bg-gray-100 pt-20 pb-10">
         <h2 className="text-3xl font-bold text-center mb-5">Wide Subject Coverage</h2>
         <p className="text-center w-2/3 m-auto">Whether you are studying medical, law, engineering, arts & literature, history & culture,
-        business & leadership, nursing or psychology, our team of 1000+ field specialists and industry leading experts are ready to help you
-        at every stage of your educational life. So what are you waiting for?</p>
+          business & leadership, nursing or psychology, our team of 1000+ field specialists and industry leading experts are ready to help you
+          at every stage of your educational life. So what are you waiting for?</p>
 
         <div className="flex flex-wrap p-10 justify-center">
           {
@@ -134,6 +137,17 @@ export const Assignments = () => {
         </div>
       </section>
 
+      {
+        samples.length > 0
+          ?
+          <section className="my-10">
+            <h2 className="text-3xl font-bold text-center mb-3">Sample Work</h2>
+            <p className="text-gray-600 text-center mb-5">Some sample work we have previously done for our clients.</p>
+            <Samples samples={samples} />
+          </section>
+          : ''
+      }
+
       <section className="p-10">
         <h2 className="text-3xl font-bold text-center mb-3">FAQ</h2>
         <p className="text-gray-600 text-center mb-5">Our answers to your most frequently asked questions.</p>
@@ -143,8 +157,9 @@ export const Assignments = () => {
       {
         reviews.length > 0
           ?
-          <section>
-            <h2 className="text-3xl font-bold text-center mb-5">Customer Reviews</h2>
+          <section className="mt-10">
+            <h2 className="text-3xl font-bold text-center mb-3">Customer Reviews</h2>
+            <p className="text-gray-600 text-center">Good things go together. Like us and our customers!</p>
             <Reviews reviews={reviews} />
           </section>
           : ''
@@ -153,8 +168,9 @@ export const Assignments = () => {
       {
         posts.length > 0
           ?
-          <section>
-            <h2 className="text-3xl font-bold text-center mb-5">Read More</h2>
+          <section className="mt-10">
+            <h2 className="text-3xl font-bold text-center mb-3">Read More</h2>
+            <p className="text-gray-600 text-center">Latest updates and news from our side.</p>
 
             <Posts posts={posts} />
           </section>
@@ -164,13 +180,21 @@ export const Assignments = () => {
   )
 }
 
+export const EssayWriting = () => {
+  return (
+    <h1>Essays</h1>
+  )
+}
+
 export const ComputerScience = () => {
   const [reviews, setReviews] = useState([])
   const [posts, setPosts] = useState([])
+  const [samples, setSamples] = useState([])
 
   useEffect(() => {
     fetchReviews(setReviews, [4])
     fetchPosts(setPosts, [4])
+    fetchSamples(setSamples, [4])
   }, [])
 
   const csServices = [
@@ -226,17 +250,32 @@ export const ComputerScience = () => {
         </div>
       </section>
 
+      {
+        samples.length > 0
+          ?
+          <section className="my-10">
+            <h2 className="text-3xl font-bold text-center mb-3">Sample Work</h2>
+            <p className="text-gray-600 text-center mb-5">Some sample work we have previously done for our clients.</p>
+
+            <Samples samples={samples} />
+          </section>
+          : ''
+      }
+
       <section className="p-10">
         <h2 className="text-3xl font-bold text-center mb-3">FAQ</h2>
         <p className="text-gray-600 text-center mb-5">Our answers to your most frequently asked questions.</p> {/* TODO subject specific is better */}
+
         <FAQSection questionNAnswers={R.faqQuestions} />
       </section>
 
       {
         reviews.length > 0
           ?
-          <section>
+          <section className="mt-10">
             <h2 className="text-3xl font-bold text-center mb-5">Customer Reviews</h2>
+            <p className="text-gray-600 text-center mb-5">Good things go together. Like us and our customers!</p>
+
             <Reviews reviews={reviews} />
           </section>
           : ''
@@ -245,8 +284,9 @@ export const ComputerScience = () => {
       {
         posts.length > 0
           ?
-          <section>
-            <h2 className="text-3xl font-bold text-center mb-5">Read More</h2>
+          <section className="mt-10">
+            <h2 className="text-3xl font-bold text-center mb-3">Read More</h2>
+            <p className="text-gray-600 text-center">Latest updates and news from our side.</p>
 
             <Posts posts={posts} />
           </section>

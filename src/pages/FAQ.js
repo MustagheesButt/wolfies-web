@@ -3,7 +3,7 @@ import { Player } from "@lottiefiles/react-lottie-player"
 import { Head } from "../components/head"
 import { Layout } from "../components/layout"
 import { R } from "../res/R"
-import { FAQSection } from "../components/faq_section"
+import { FAQSection } from "../components/faqSection"
 
 export const FAQ = () => {
   return (

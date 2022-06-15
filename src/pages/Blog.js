@@ -26,7 +26,6 @@ export const BlogPost = () => {
   const params = useParams()
   const [post, setPost] = useState()
 
-
   useEffect(() => {
     fetchPost(params.slug, setPost)
   }, [params.slug])

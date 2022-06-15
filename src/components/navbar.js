@@ -41,13 +41,10 @@ export const Navbar = ({ fixed }) => {
                     <Link to='/services/assignments' className="mr-5 hover:text-gray-900">Assignments</Link>
                   </Menu.Item>
                   <Menu.Item>
-                    <Link to='/services/assignments' className="mr-5 hover:text-gray-900">Assessments</Link>
+                    <Link to='/services/essay-writing' className="mr-5 hover:text-gray-900">Essay Writing</Link>
                   </Menu.Item>
                   <Menu.Item>
-                    <Link to='/services/assignments' className="mr-5 hover:text-gray-900">Essay Writing</Link>
-                  </Menu.Item>
-                  <Menu.Item>
-                    <Link to='/services/assignments' className="mr-5 hover:text-gray-900">Dissertations</Link>
+                    <Link to='/services/dissertations' className="mr-5 hover:text-gray-900">Dissertations</Link>
                   </Menu.Item>
                   <Menu.Item>
                     <Link to='/services/computer-science-programming' className="mr-5 hover:text-gray-900">Programming & Computer Science</Link>
@@ -56,10 +53,10 @@ export const Navbar = ({ fixed }) => {
                     <Link to='/plagiarism-checker' className="mr-5 hover:text-gray-900">Plagiarism Checker Tool</Link>
                   </Menu.Item>
                   <Menu.Item>
-                    <Link to='/services/assignments' className="mr-5 hover:text-gray-900">Thesis Writing</Link>
+                    <Link to='/services/thesis-writing' className="mr-5 hover:text-gray-900">Thesis Writing</Link>
                   </Menu.Item>
                   <Menu.Item>
-                    <Link to='/services/assignments' className="mr-5 hover:text-gray-900">Final Year Projects</Link>
+                    <Link to='/services/final-year-projects' className="mr-5 hover:text-gray-900">Final Year Projects</Link>
                   </Menu.Item>
                 </Menu.Items>
               </Menu>
