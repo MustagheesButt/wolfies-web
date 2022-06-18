@@ -1,3 +1,14 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.step {
+  transform: translateX(0);
+  opacity: 1;
+  transition: transform 0.6s, visibility 0s, opacity 0.6s;
+}
+.step.h-0 {
+  transform: translateX(-250px);
+  opacity: 0;
+  visibility: hidden;
+}

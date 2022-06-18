@@ -182,7 +182,25 @@ export const Assignments = () => {
 
 export const EssayWriting = () => {
   return (
-    <h1>Essays</h1>
+    <h1>Essays - Coming Soon</h1>
+  )
+}
+
+export const Dissertations = () => {
+  return (
+    <h1>Dissertations - Coming Soon</h1>
+  )
+}
+
+export const ThesisWriting = () => {
+  return (
+    <h1>Thesis - Coming Soon</h1>
+  )
+}
+
+export const FinalYearProjects = () => {
+  return (
+    <h1>Final Year Projects - Coming Soon</h1>
   )
 }
 

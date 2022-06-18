@@ -1,12 +1,13 @@
 import { useEffect } from "react"
 import { Routes, Route } from "react-router-dom"
 import { Home } from "./pages/Home"
-import { Services, Assignments, ComputerScience, ServicesHome, EssayWriting } from "./pages/Services"
+import { Services, Assignments, ComputerScience, ServicesHome, EssayWriting, Dissertations, ThesisWriting, FinalYearProjects } from "./pages/Services"
 import { About } from "./pages/About"
 import { Contact } from "./pages/Contact"
 import { Blog, BlogPost } from "./pages/Blog"
 import { Sample } from "./pages/Sample"
 import { Order } from "./pages/Order"
+import { Congratulations } from "./pages/Congratulations"
 import { FAQ } from "./pages/FAQ"
 import { NotFound } from "./pages/NotFound"
 import AOS from "aos"
@@ -28,7 +29,10 @@ function App() {
         <Route index element={<ServicesHome />} />
         <Route path="assignments" element={<Assignments />} />
         <Route path="essay-writing" element={<EssayWriting />} />
+        <Route path="dissertations" element={<Dissertations />} />
         <Route path="computer-science-programming" element={<ComputerScience />} />
+        <Route path="thesis-writing" element={<ThesisWriting />} />
+        <Route path="final-year-projects" element={<FinalYearProjects />} />
       </Route>
       <Route path="/about" element={<About />} />
       <Route path="/contact" element={<Contact />} />
@@ -39,6 +43,7 @@ function App() {
       <Route path="/samples/:slug" element={<Sample />} />
       <Route path="/faq" element={<FAQ />} />
       <Route path="/order" element={<Order />} />
+      <Route path="/congratulations" element={<Congratulations />} />
       <Route path="*" element={<NotFound />} />
     </Routes>
   )

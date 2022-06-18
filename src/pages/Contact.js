@@ -1,14 +1,11 @@
 import { Player } from "@lottiefiles/react-lottie-player"
-import { useEffect } from "react"
+import { Head } from "../components/head"
 import { Layout } from "../components/layout"
 
 export const Contact = () => {
-  useEffect(() => {
-    document.title = "Contact Us"
-  })
-
   return (
     <Layout>
+      <Head title="Contact Us" />
       <section className="flex flex-col md:flex-row-reverse justify-around py-14 bg-blue-100">
         <Player src="https://assets10.lottiefiles.com/packages/lf20_isbiybfh.json" style={{ width: "400px", height: "400px" }} autoplay loop />
         <div className="flex flex-col justify-center w-1/3">

@@ -27,17 +27,19 @@ export const Home = () => {
       const full = `${process.env.REACT_APP_UPLOADS_DIR}/2022/05/Full-Ad.webm`
       const mobile = `${process.env.REACT_APP_UPLOADS_DIR}/2022/05/Full-Ad-Mobile.webm`
 
-      if (window.screen.availWidth <= 480 && vidSrc.src !== mobile) {
-        vidSrc.src = mobile
-      } else if (vidSrc.src !== full) {
-        vidSrc.src = full
+      if (window.screen.availWidth <= 480) {
+        if (vidSrc.src !== mobile) vidSrc.src = mobile
+      } else {
+        if (vidSrc.src !== full) vidSrc.src = full
       }
       document.querySelector('video').load()
     }
 
     window.onresize = () => {
-      setBgVid()
+      if (window.lastWidth !== window.innerWidth) // only trigger when device width changes
+        setBgVid()
     }
+    window.lastWidth = window.innerWidth
     setBgVid()
 
     const vid = document.querySelector('video')
@@ -102,13 +104,15 @@ export const Home = () => {
         </div>
 
         <div className="flex flex-col md:flex-row p-10 justify-around">
-          <div className="w-full md:2/5 text-center md:text-left">
+          <div className="w-full">
             <Player src="https://assets6.lottiefiles.com/packages/lf20_calza6zj.json" className="max-w-[400px]" autoplay loop />
 
-            <h1 className="text-4xl font-bold my-5 text-gray-800">Expertise! From The Experts!</h1>
-            <p className="text-gray-600 mb-5 w-2/3">Whether you are running short on a deadline or looking for the highest grade quality content,
-              our team of 1000+ industry-leading professionals, PhD professors and field experts have got you covered. So sit back and relax!</p>
-            <ul className="text-gray-600">
+            <div className="text-center md:text-left">
+              <h1 className="text-4xl font-bold my-5 text-gray-800">Expertise! From The Experts!</h1>
+              <p className="text-gray-600 mb-5 md:w-2/3">Whether you are running short on a deadline or looking for the highest grade quality content,
+                our team of 1000+ industry-leading professionals, PhD professors and field experts have got you covered. So sit back and relax!</p>
+            </div>
+            <ul className="text-gray-600 w-2/3 md:w-full m-auto mb-5">
               <li className="mb-1">
                 <svg className="h-5 w-5 inline text-green-500 mr-1"><use href="#badge-check-s" /></svg>
                 Unlimited Revisions

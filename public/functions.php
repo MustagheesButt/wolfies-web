@@ -6,7 +6,11 @@ function get_services()
 {
   $products = wc_get_products([]);
   $products = array_map(function ($p) {
-    return $p->get_data();
+    $x = $p->get_data();
+    if ($p->is_type('variable'))
+      $x["variations"] = $p->get_available_variations();
+
+    return $x;
   }, $products);
 
   return $products;
@@ -36,6 +40,10 @@ function create_unpaid_order(WP_REST_Request $request)
   // $order->update_status("Completed", 'Imported order', TRUE);
 }
 
+function get_countries() {
+  return wc()->countries->get_allowed_countries();
+}
+
 add_action('rest_api_init', function () {
   register_rest_route('wolfie', 'services', [
     'methods' => 'GET',
@@ -45,5 +53,10 @@ add_action('rest_api_init', function () {
   register_rest_route('wolfie', 'create-unpaid-order', [
     'methods' => 'POST',
     'callback' => 'create_unpaid_order'
+  ]);
+
+  register_rest_route('wolfie', 'get-countries', [
+    'methods' => 'GET',
+    'callback' => 'get_countries'
   ]);
 });
