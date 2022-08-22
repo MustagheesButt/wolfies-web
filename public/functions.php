@@ -1,5 +1,9 @@
 <?php
 
+// ini_set('display_errors', 1);
+// ini_set('display_startup_errors', 1);
+// error_reporting(E_ALL);
+
 add_theme_support('post-thumbnails');
 
 function get_services()
@@ -8,7 +12,14 @@ function get_services()
   $products = array_map(function ($p) {
     $x = $p->get_data();
     if ($p->is_type('variable'))
+    {
       $x["variations"] = $p->get_available_variations();
+
+      foreach ($x["variations"] as $key => $variation) {
+        $subject = $variation["attributes"]["attribute_pa_subject"];
+        $x["variations"][$key]["display_name"] = get_term_by('slug', $subject, 'pa_subject')->name;
+      }
+    }
 
     return $x;
   }, $products);
@@ -28,12 +39,13 @@ function create_unpaid_order(WP_REST_Request $request)
     'country'    => $request->get_param('country')
   ];
 
-  $service_id = $request->get_param('service_id');
+  $service_id = $request->get_param('service_id'); // this is the product
+  $subject_id = $request->get_param('subject_id'); // this is the variation
 
   $order = wc_create_order();
 
   $product = get_product($service_id);
-  $order->add_product($product, 1);
+  $order->add_product($product, 1, $subject_id);
   $order->set_address($address, 'billing');
 
   $order->calculate_totals();
@@ -43,6 +55,11 @@ function create_unpaid_order(WP_REST_Request $request)
 function get_countries() {
   return wc()->countries->get_allowed_countries();
 }
+
+// function add_cors_http_header(){
+//   header("Access-Control-Allow-Origin: *");
+// }
+// add_action('init','add_cors_http_header');
 
 add_action('rest_api_init', function () {
   register_rest_route('wolfie', 'services', [

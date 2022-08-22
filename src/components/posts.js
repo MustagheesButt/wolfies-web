@@ -1,12 +1,18 @@
 import { Link } from "react-router-dom"
 
-export const Posts = ({ posts }) => {
+export const Posts = ({ posts, vertical }) => {
+  let containerClasses = "overflow-x-scroll"
+  let postClasses = "max-w-md items-center"
+  if (vertical) {
+    containerClasses = "flex-col"
+    postClasses = ""
+  }
   return (
-    <div className="flex overflow-x-scroll p-10">
+    <div className={`flex ${containerClasses} p-10 gap-5`}>
       {
         posts.map(p => (
           <Link to={`/blog/${p.slug}`} key={p.id}>
-            <div className="shrink-0 relative flex flex-col max-w-md rounded-lg bg-white shadow-lg items-center mr-10">
+            <div className={`shrink-0 relative flex flex-col ${postClasses} rounded-lg bg-white shadow-lg`}>
               { p.photoUrl && <img className="object-cover w-24 h-24 rounded-full" src={p.photoUrl} alt="" /> }
               <div className="p-6 flex flex-col justify-start">
                 <h2 className="text-gray-900 text-xl font-medium mb-2">{p.title}</h2>

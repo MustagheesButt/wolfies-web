@@ -127,25 +127,11 @@ const DetailsForm = ({ pageCount, setPageCount, serviceId, setServiceId, selecte
     fetchServices(setServices)
   }, [])
 
-  const getMainCat = (cat) => {
-    return cat.split('_')[0]
-  }
-  const getCatName = (cat) => {
-    return cat.split('_')[1]
-  }
-
   useEffect(() => {
     const data = findService(serviceId, services)
 
     if (data?.variations) {
-      const newData = {}
-      data.variations.forEach(v => {
-        if (!newData[getMainCat(v.attributes.attribute_pa_subject)]) newData[getMainCat(v.attributes.attribute_pa_subject)] = []
-        newData[getMainCat(v.attributes.attribute_pa_subject)].push(
-          { id: v.variation_id, name: getCatName(v.attributes.attribute_pa_subject), price: v.display_price }
-        )
-      })
-      setSubjects(newData)
+      setSubjects(mapSubjects(data.variations))
     } else {
       setSubjects([])
     }
@@ -352,4 +338,18 @@ const SubmitStep = () => {
 
 function findService(id, services) {
   return services.find(s => s.id.toString() === id)
+}
+
+function mapSubjects(variations) {
+  const newData = {}
+  variations.forEach(v => {
+    const mainCategory = v.attributes.attribute_pa_subject.split('_')[0]
+    const subjName = v.display_name
+    if (!newData[mainCategory]) newData[mainCategory] = []
+    newData[mainCategory].push(
+      { id: v.variation_id, name: subjName, price: v.display_price }
+    )
+  })
+
+  return newData
 }
