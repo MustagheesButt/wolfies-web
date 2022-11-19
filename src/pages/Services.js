@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom"
 import { Player } from "@lottiefiles/react-lottie-player"
 import { Outlet } from "react-router-dom"
-import { Head } from "../components/head"
+import { Head } from "../components/layout/head"
 import { Layout } from "../components/layout"
 import { R } from "../res/R"
 

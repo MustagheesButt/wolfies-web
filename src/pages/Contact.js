@@ -1,5 +1,5 @@
 import { Player } from "@lottiefiles/react-lottie-player"
-import { Head } from "../components/head"
+import { Head } from "../components/layout/head"
 import { Layout } from "../components/layout"
 
 export const Contact = () => {

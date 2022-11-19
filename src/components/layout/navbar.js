@@ -7,11 +7,14 @@ export const Navbar = ({ fixed }) => {
     classes = "fixed z-10 left-0 right-0 top-0"
   }
 
+  const month = new Date().getMonth()
+  const season = (month >= 1 && month <= 8) ? "Summer" : (month >= 9 && month <= 10 ? "Winter" : "New Year")
+
   return (
     // {showLoginModal ? <LoginModal closeCb={() => setShowLoginModal(false)} /> : ''}
     <nav className={`${classes}`}>
       <div className="basis-full p-3 text-center bg-red-500 text-white">
-        Summer sale - 20% off on all services!
+        {season} sale - 20% off on all services!
       </div>
 
       <div className="flex flex-wrap justify-around bg-white backdrop-blur-md p-2 text-gray-600 font-bold border-b-2">

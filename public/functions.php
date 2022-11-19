@@ -11,8 +11,7 @@ function get_services()
   $products = wc_get_products([]);
   $products = array_map(function ($p) {
     $x = $p->get_data();
-    if ($p->is_type('variable'))
-    {
+    if ($p->is_type('variable')) {
       $x["variations"] = $p->get_available_variations();
 
       foreach ($x["variations"] as $key => $variation) {
@@ -52,16 +51,17 @@ function create_unpaid_order(WP_REST_Request $request)
   // $order->update_status("Completed", 'Imported order', TRUE);
 }
 
-function get_countries() {
+function get_countries()
+{
   return wc()->countries->get_allowed_countries();
 }
 
-// function add_cors_http_header(){
-//   header("Access-Control-Allow-Origin: *");
-// }
-// add_action('init','add_cors_http_header');
-
 add_action('rest_api_init', function () {
+  add_action('rest_pre_serve_request', function () {
+    header('Access-Control-Allow-Headers: Authorization, Content-Type, X-WP-Wpml-Language', true);
+    header("Access-Control-Allow-Origin: *");
+  });
+
   register_rest_route('wolfie', 'services', [
     'methods' => 'GET',
     'callback' => 'get_services'

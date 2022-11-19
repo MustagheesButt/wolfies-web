@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react"
 import { Link } from "react-router-dom"
 import { Player } from "@lottiefiles/react-lottie-player"
-import { Head } from "../../components/head"
+import { Head } from "../../components/layout/head"
 import { fetchReviews, Reviews } from "../../components/reviews"
 import { fetchPosts, Posts } from "../../components/posts"
 import { fetchSamples, Samples } from "../../components/samples"

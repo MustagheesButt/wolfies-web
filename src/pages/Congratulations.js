@@ -1,4 +1,4 @@
-import { Head } from "../components/head"
+import { Head } from "../components/layout/head"
 import { Layout } from "../components/layout"
 
 export const Congratulations = () => {
