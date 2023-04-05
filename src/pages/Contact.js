@@ -34,13 +34,13 @@ export const Contact = () => {
 
         <h2 className="text-md font-bold text-center text-gray-500 mb-3">SOCIAL</h2>
         <div className="flex justify-center">
-          <a href="https://facebook.com" target='_blank' rel="noreferrer" className="text-blue-500 mr-5">
+          <a href="https://facebook.com/wolfie.solutions/" target='_blank' rel="noreferrer" className="text-blue-500 mr-5">
             <svg className="w-8 h-8">
               <use href="#facebook" />
             </svg>
           </a>
 
-          <a href="https://instagram.com" target='_blank' rel="noreferrer" className="text-pink-500">
+          <a href="https://instagram.com/wolfie.solutions/" target='_blank' rel="noreferrer" className="text-pink-500">
             <svg className="w-8 h-8">
               <use href="#instagram" />
             </svg>
