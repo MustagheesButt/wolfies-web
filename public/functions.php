@@ -84,6 +84,12 @@ function get_countries()
   return wc()->countries->get_allowed_countries();
 }
 
+function new_request()
+{
+  wp_mail();
+  return "sent";
+}
+
 add_action('rest_api_init', function () {
   add_action('rest_pre_serve_request', function () {
     header('Access-Control-Allow-Headers: Authorization, Content-Type, X-WP-Wpml-Language', true);
@@ -98,6 +104,11 @@ add_action('rest_api_init', function () {
   register_rest_route('wolfie', 'create-unpaid-order', [
     'methods' => 'POST',
     'callback' => 'create_unpaid_order'
+  ]);
+
+  register_rest_route('wolfie', 'new-request', [
+    'methods' => 'POST',
+    'callback' => 'new_request'
   ]);
 
   register_rest_route('wolfie', 'get-countries', [

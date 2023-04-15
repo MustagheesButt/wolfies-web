@@ -1,8 +1,8 @@
-// import MessengerCustomerChat from "react-messenger-customer-chat"
 import { Footer } from "./footer"
 import { Head } from "./head"
 import { Navbar } from "./navbar"
 import { SVGDefs } from "./svg_defs"
+// import { MessengerChat } from "react-messenger-chat-plugin"
 
 export const Layout = ({ fixedNav, children }) => {
 
@@ -10,11 +10,15 @@ export const Layout = ({ fixedNav, children }) => {
     <>
       <Head /> {/* To reset title etc in case it's missing, otherwise it's page specific */}
       <SVGDefs />
-      {/* <MessengerCustomerChat
-        appId="189689855001912"
+      {/* <MessengerChat
         pageId="189689855001912"
+        themeColor={"#000000"}
+        bottomSpacing={300}
         loggedInGreeting="Hi! Want some help with assignments, resumes or projects? Feel free to contact!"
-        loggedOutGreeting="Hi! Want some help with assignments, resumes or projects? Feel free to contact!" /> */}
+        loggedOutGreeting="Hi! Want some help with assignments, resumes or projects? Feel free to contact!"
+      // greetingDialogDisplay={"show"}
+      // debugMode={true}
+      /> */}
       <Navbar fixed={fixedNav} />
       <main>
         {children}

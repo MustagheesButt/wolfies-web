@@ -64,9 +64,9 @@ export const Navbar = ({ fixed }) => {
                 </Menu.Items>
               </Menu>
             </Menu.Item>
-            <Menu.Item>
+            {/* <Menu.Item>
               <Link to='/blog' className="mr-5 hover:text-gray-900">Blog</Link>
-            </Menu.Item>
+            </Menu.Item> */}
             <Menu.Item>
               <Link to='/contact' className="mr-5 hover:text-gray-900">Contact</Link>
             </Menu.Item>
