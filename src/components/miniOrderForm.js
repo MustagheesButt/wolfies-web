@@ -93,7 +93,10 @@ export async function fetchServices(cb) {
 async function submitRequest(reqData) {
   const resp = await fetch(`${process.env.REACT_APP_API_URL}/wolfie/new-request`, {
     method: 'POST',
-    body: reqData
+    body: JSON.stringify(reqData),
+    headers: {
+      'Content-Type': 'application/json'
+    }
   })
   const data = await resp.json()
 

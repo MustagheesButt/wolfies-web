@@ -84,9 +84,13 @@ function get_countries()
   return wc()->countries->get_allowed_countries();
 }
 
-function new_request()
+function new_request(WP_REST_Request $request)
 {
-  wp_mail();
+  $email = $request->get_param('email');
+  $courseCode = $request->get_param('courseCode');
+  $headers[] = 'From: No Reply <no-reply@wolfiesolutions.comt>';
+ 
+  wp_mail("support@wolfiesolutions.com", "New Assignment Request", $email . " is requesting help for " . $courseCode, $headers);
   return "sent";
 }
 
