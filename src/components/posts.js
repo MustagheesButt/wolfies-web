@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom"
+import { Http } from "../services/http"
 
 export const Posts = ({ posts, vertical }) => {
   let containerClasses = "overflow-x-scroll"
@@ -34,8 +35,7 @@ export async function fetchPosts(cb, categories = []) {
   if (typeof categories === "number" || categories.length > 0)
     params.append("categories", categories)
 
-  const resp = await fetch(`${process.env.REACT_APP_API_URL}/wp/v2/posts?${params.toString()}`)
-  const data = await resp.json()
+  const data = await Http.get(`/wp/v2/posts?${params.toString()}`)
 
   cb(mapPosts(data))
 }
@@ -43,7 +43,7 @@ export async function fetchPosts(cb, categories = []) {
 export async function fetchPost(slug, cb) {
   if (!slug) throw new Error('Invalid slug')
 
-  const response = await fetch(`${process.env.REACT_APP_API_URL}/wp/v2/posts/?slug=${slug}&_embed=author,wp:featuredmedia`)
+  const response = await fetch(`${import.meta.env.VITE_API_URL}/wp/v2/posts/?slug=${slug}&_embed=author,wp:featuredmedia`)
   if (!response.ok) {
     throw new Error('Network response was not ok')
   }

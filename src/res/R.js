@@ -1,8 +1,10 @@
+import { constants } from "./constants"
 import { images } from "./images"
 import { anim } from "./anim"
 import { accents } from "./accents"
 
 export const R = {
+  constants,
   images,
   anim,
   accents,

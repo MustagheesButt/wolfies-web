@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react"
 import { useLocation } from "react-router-dom"
+import { Http } from "../../services/http"
 
 const PersonalDetails = () => {
   const location = useLocation()
@@ -8,7 +9,7 @@ const PersonalDetails = () => {
   const [countries, setCountries] = useState([])
 
   useEffect(() => {
-    fetch(`${process.env.REACT_APP_API_URL}/wolfie/get-countries`)
+    Http.get(`/wolfie/get-countries`)
       .then(async data => {
         const countries = await data.json()
         setCountries(countries)

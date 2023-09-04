@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom"
+import { Http } from "../services/http"
 
 export const Samples = ({ samples }) => {
   const colors = ['blue', 'indigo']
@@ -29,8 +30,7 @@ export async function fetchSamples(cb, categories = []) {
   if (typeof categories === "number" || categories.length > 0)
     params.append("categories", categories)
 
-  const resp = await fetch(`${process.env.REACT_APP_API_URL}/wp/v2/samples?${params.toString()}`)
-  const data = await resp.json()
+  const data = await Http.get(`/wp/v2/samples?${params.toString()}`)
 
   cb(mapSamples(data))
 }
@@ -38,7 +38,7 @@ export async function fetchSamples(cb, categories = []) {
 export async function fetchSample(slug, cb) {
   if (!slug) throw new Error('Invalid slug')
 
-  const response = await fetch(`${process.env.REACT_APP_API_URL}/wp/v2/samples/?slug=${slug}&_embed=author,wp:featuredmedia`)
+  const response = await fetch(`${import.meta.env.VITE_API_URL}/wp/v2/samples/?slug=${slug}&_embed=author,wp:featuredmedia`)
   if (!response.ok) {
     throw new Error('Network response was not ok')
   }

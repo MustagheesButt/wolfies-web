@@ -19,7 +19,7 @@ export const Navbar = ({ fixed }) => {
 
       <div className="flex flex-wrap justify-around bg-white backdrop-blur-md p-2 text-gray-600 font-bold border-b-2">
         <Link to='/' className="mr-10 hover:text-gray-900 basis-1/3">
-          <img src={`${process.env.PUBLIC_URL}/logo.png`} className="inline w-[30px] md:w-[50px]" alt="Logo" />
+          <img src={`/logo.png`} className="inline w-[30px] md:w-[50px]" alt="Logo" />
         </Link>
 
         <Menu>

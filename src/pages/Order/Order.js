@@ -105,7 +105,7 @@ export const Order = () => {
 }
 
 async function submitOrder(orderData) {
-  const resp = await fetch(`${process.env.REACT_APP_API_URL}/wolfie/create-unpaid-order`, {
+  const resp = await fetch(`${import.meta.env.VITE_API_URL}/wolfie/create-unpaid-order`, {
     method: 'POST',
     body: orderData
   })

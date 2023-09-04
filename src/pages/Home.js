@@ -24,8 +24,8 @@ export const Home = () => {
 
     function setBgVid() {
       const vidSrc = document.querySelector('video source')
-      const full = `${process.env.REACT_APP_UPLOADS_DIR}/2022/05/Full-Ad.webm`
-      const mobile = `${process.env.REACT_APP_UPLOADS_DIR}/2022/05/Full-Ad-Mobile.webm`
+      const full = `${R.constants.UPLOADS_DIR}/2022/05/Full-Ad.webm`
+      const mobile = `${R.constants.UPLOADS_DIR}/2022/05/Full-Ad-Mobile.webm`
 
       if (window.screen.availWidth <= 480) {
         if (vidSrc.src !== mobile) vidSrc.src = mobile
@@ -73,7 +73,7 @@ export const Home = () => {
   return (
     <Layout fixedNav={false}>
       <section className="relative bg-black min-h-screen">
-        <video autoPlay muted loop style={{ height: "100%" }} className="mx-auto" poster={`${process.env.PUBLIC_URL}/static/images/poster.webp`}>
+        <video autoPlay muted loop style={{ height: "100%" }} className="mx-auto" poster={`/static/images/poster.webp`}>
           <source src='' type="video/webm" />
         </video>
 

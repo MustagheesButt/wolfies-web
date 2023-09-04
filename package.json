@@ -14,14 +14,13 @@
     "react-dom": "^17.0.2",
     "react-messenger-chat-plugin": "^3.0.5",
     "react-router-dom": "^6.2.2",
-    "react-scripts": "5.0.0",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "BROWSER=none react-scripts start",
-    "build": "react-scripts build && rm -rf target/* && mkdir target && cp -r build/* target && mv target/index.html target/index.php",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "start": "vite",
+    "build": "vite build && rm -rf target/* && mkdir target && cp -r dist/* target && mv target/index.html target/index.php",
+    "test": "vite test",
+    "serve": "vite preview"
   },
   "eslintConfig": {
     "extends": [
@@ -42,9 +41,12 @@
     ]
   },
   "devDependencies": {
+    "@vitejs/plugin-react": "^4.0.4",
     "autoprefixer": "^10.4.4",
     "jest-canvas-mock": "^2.4.0",
     "postcss": "^8.4.12",
-    "tailwindcss": "^3.0.23"
+    "tailwindcss": "^3.0.23",
+    "vite": "^4.4.9",
+    "vite-tsconfig-paths": "^4.2.0"
   }
 }

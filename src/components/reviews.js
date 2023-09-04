@@ -1,3 +1,5 @@
+import { Http } from "../services/http"
+
 // maybe also fetch and map here too
 export const Reviews = ({ reviews }) => {
   return (
@@ -5,7 +7,7 @@ export const Reviews = ({ reviews }) => {
       {
         reviews.map(r => (
           <div className="shrink-0 mr-10 relative flex flex-col md:flex-row max-w-xl rounded-lg bg-white shadow-lg" key={r.id}>
-            <img className="object-cover w-24 h-24 absolute -left-6 top-7 rounded-full" src={r.photoUrl || `${process.env.PUBLIC_URL}/static/images/profile.webp`} alt="" />
+            <img className="object-cover w-24 h-24 absolute -left-6 top-7 rounded-full" src={r.photoUrl || `/static/images/profile.webp`} alt="" />
             <div className="p-6 pl-24 flex flex-col justify-start">
               <h2 className="text-gray-900 text-xl font-medium mb-2">{r.title}</h2>
               <p className="text-gray-700 text-base mb-4" dangerouslySetInnerHTML={{ __html: r.content }}></p>
@@ -25,8 +27,7 @@ export async function fetchReviews(cb, categories=[]) {
   if (typeof categories === "number" || categories.length > 0)
     params.append("categories", categories)
 
-  const resp = await fetch(`${process.env.REACT_APP_API_URL}/wp/v2/reviews?${params.toString()}`)
-  const data = await resp.json()
+  const data = await Http.get(`/wp/v2/reviews?${params.toString()}`)
 
   cb(mapReviews(data))
 }

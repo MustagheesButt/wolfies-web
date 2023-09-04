@@ -3,6 +3,7 @@ import {
   useRef,
   useState
 } from "react"
+import { Http } from "../services/http"
 // import { useNavigate } from "react-router-dom"
 
 export const MiniOrderForm = () => {
@@ -74,7 +75,7 @@ export const MiniOrderForm = () => {
   
         <div>
           <button className="bg-blue-300 hover:bg-blue-400 text-gray-900 font-bold py-2 px-4 rounded inline-flex items-center" type="submit">
-            <span>Get Estimate</span>
+            <span>Get Help</span>
           </button>
         </div>
       </form>
@@ -84,14 +85,13 @@ export const MiniOrderForm = () => {
 }
 
 export async function fetchServices(cb) {
-  const resp = await fetch(`${process.env.REACT_APP_API_URL}/wolfie/services`)
-  const data = await resp.json()
+  const data = await Http.get('/wolfie/services')
 
   cb(data)
 }
 
 async function submitRequest(reqData) {
-  const resp = await fetch(`${process.env.REACT_APP_API_URL}/wolfie/new-request`, {
+  const resp = await fetch(`${import.meta.env.VITE_API_URL}/wolfie/new-request`, {
     method: 'POST',
     body: JSON.stringify(reqData),
     headers: {

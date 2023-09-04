@@ -19,7 +19,7 @@ export const About = () => {
 
   return (
     <Layout>
-      <section className={`h-[50vh] flex justify-center items-center bg-cover bg-fixed bg-bottom text-white`} style={{ backgroundImage: `linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url(${process.env.PUBLIC_URL}/static/images/pexels-steve-397863.jpg)` }}>
+      <section className={`h-[50vh] flex justify-center items-center bg-cover bg-fixed bg-bottom text-white`} style={{ backgroundImage: `linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url(/static/images/pexels-steve-397863.jpg)` }}>
         <h1 className="text-5xl font-bold">About Us</h1>
       </section>
 
@@ -63,7 +63,7 @@ const Card = ({ title, name, profilePhoto, social }) => {
       {/* <!-- Top Section --> */}
       <div className="flex flex-col items-center">
         <p className="mt-10 mb-3 text-2xl font-light text-gray-700">{title}</p>
-        <img className="rounded-full mb-3" width="200" height="200" src={profilePhoto ? profilePhoto : `${process.env.PUBLIC_URL}/static/images/profile.webp`} alt="" />
+        <img className="rounded-full mb-3" width="200" height="200" src={profilePhoto ? profilePhoto : `/static/images/profile.webp`} alt="" />
         <p className="mt-1 text-3xl font-light text-gray-700 text-center">{name}</p>
         <div className="h-0.5 bg-gray-200 w-full my-5"></div>
       </div>
