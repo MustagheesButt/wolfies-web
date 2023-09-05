@@ -15,7 +15,7 @@
   },
   "scripts": {
     "start": "vite",
-    "build": "vite build && rm -rf target/* && mkdir target && cp -r dist/* target && mv target/index.html target/index.php",
+    "build": "vite build",
     "test": "vitest",
     "serve": "vite preview"
   },

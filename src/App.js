@@ -1,5 +1,5 @@
 import { useEffect } from "react"
-import { Routes, Route } from "react-router-dom"
+import { Routes, Route, useLocation } from "react-router-dom"
 import { Home } from "./pages/Home"
 import { Services, Assignments, ComputerScience, ServicesHome, EssayWriting, Dissertations, ThesisWriting, FinalYearProjects } from "./pages/Services"
 import { About } from "./pages/About"
@@ -21,6 +21,11 @@ function App() {
   useEffect(() => {
     AOS.init()
   }, [])
+
+  const location = useLocation();
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location]);
 
   return (
     <Routes>

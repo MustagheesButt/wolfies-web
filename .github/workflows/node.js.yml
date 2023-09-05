@@ -33,7 +33,7 @@ jobs:
       uses: actions/upload-artifact@v3
       with:
         name: wolfies
-        path: target
+        path: dist
   
   deploy:
     name: Deploy to server
@@ -67,3 +67,14 @@ jobs:
         key: ${{ secrets.SSH_PK }}
         source: "./*"
         target: "domains/wolfiesolutions.com/public_html/"
+
+    - name: SSH in and move wp theme files to proper location
+      uses: appleboy/ssh-action@v0.1.4
+      with:
+        host: ${{ secrets.SSH_HOST }}
+        port: ${{ secrets.SSH_PORT }}
+        username: ${{ secrets.SSH_USERNAME }}
+        key: ${{ secrets.SSH_PK }}
+        script: |
+          mv domains/wolfiesolutions.com/public_html/functions.php domains/wolfiesolutions.com/public_html/api.wolfiesolutions.com/wp-content/themes/wolfies/
+          mv domains/wolfiesolutions.com/public_html/style.css domains/wolfiesolutions.com/public_html/api.wolfiesolutions.com/wp-content/themes/wolfies/
