@@ -1,9 +1,10 @@
 import { Link } from "react-router-dom"
+import { Separator } from "@/components/ui/separator"
 
 export const Footer = () => {
   return (
     <footer className="bg-gradient-to-r from-cyan-500 to-blue-500">
-      <section className="flex flex-col md:flex-row m-auto py-5 w-4/5 md:w-3/5 border-b-2 justify-between">
+      <section className="flex flex-col md:flex-row m-auto py-5 w-4/5 md:w-3/5 justify-between">
         <div className="flex flex-col basis-1/4 mt-5">
           <h2 className="font-bold">Services</h2>
           <Link className="mt-2 text-gray-100 hover:text-white" to='/services/assignments'>Assignments</Link>
@@ -24,7 +25,9 @@ export const Footer = () => {
           <Link className="mt-2 text-gray-100 hover:text-white" to='/tos'>Terms of Service</Link>
         </div>
       </section>
-      <section className="m-auto py-3 w-4/5 md:w-2/5">
+
+      <section className="m-auto py-3 w-4/5 md:w-2/5 text-center">
+        <Separator className="my-4" />
         <p>Copyright &copy; {(new Date()).getFullYear()} WolfieSolutions Ltd. All rights reserved.</p>
       </section>
     </footer>

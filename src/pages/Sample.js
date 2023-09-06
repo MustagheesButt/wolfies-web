@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react"
 import { useParams } from "react-router-dom"
-import { Layout } from "../components/layout"
-import { fetchSample } from "../components/samples"
+import { Layout } from "@/components/layout"
+import { fetchSample } from "@/components/samples"
 
 export const Sample = () => {
   const params = useParams()

@@ -7,6 +7,7 @@ import { Reviews, fetchReviews } from "../components/reviews"
 import { R } from "../res/R"
 import { FAQSection } from "../components/faqSection"
 import { MiniOrderForm } from "../components/miniOrderForm"
+import HeroVideo from "@/components/HeroVideo"
 
 export const Home = () => {
   const vidTitles = [
@@ -21,26 +22,6 @@ export const Home = () => {
 
   useEffect(() => {
     fetchReviews(setCustomerReviews, 3)
-
-    function setBgVid() {
-      const vidSrc = document.querySelector('video source')
-      const full = `${R.constants.UPLOADS_DIR}/2022/05/Full-Ad.webm`
-      const mobile = `${R.constants.UPLOADS_DIR}/2022/05/Full-Ad-Mobile.webm`
-
-      if (window.screen.availWidth <= 480) {
-        if (vidSrc.src !== mobile) vidSrc.src = mobile
-      } else {
-        if (vidSrc.src !== full) vidSrc.src = full
-      }
-      document.querySelector('video').load()
-    }
-
-    window.onresize = () => {
-      if (window.lastWidth !== window.innerWidth) // only trigger when device width changes
-        setBgVid()
-    }
-    window.lastWidth = window.innerWidth
-    setBgVid()
 
     const vid = document.querySelector('video')
     vid.onplaying = () => {
@@ -72,19 +53,28 @@ export const Home = () => {
 
   return (
     <Layout fixedNav={false}>
-      <section className="relative bg-black min-h-screen">
-        <video autoPlay muted loop style={{ height: "100%" }} className="mx-auto" poster={`/static/images/poster.webp`}>
-          <source src='' type="video/webm" />
-        </video>
+      {/* https://codepen.io/Juxtopposed/pen/BaqLEQY */}
+      {/* <section className="hero-container">
+        <div className="hero">
+          <div className="hero-text">
+            <h1>Grainy Forever.</h1>
+            <p>Grainy animated blob for your modern website.</p>
+            <div className="buttons">
+              <a className="button primary" href="https://dribbble.com/shots/21248617-Daily-Design-Code-3-Grainy-Gradients-Blurry-Background" target="_blank">View Design</a>
+              <a className="button secondary" href="https://twitter.com/juxtopposed" target="_blank">Stay Tuned</a>
+            </div>
 
-        <div className="absolute top-0 right-0 bottom-0 left-0 bg-gray-800/50 text-white/90 flex flex-col justify-center items-center text-center">
-          <h1 className="text-4xl md:text-6xl font-bold">{vidTitles[currentTitle][0]}</h1>
-          <p className="text-2xl md:text-3xl my-5 font-serif italic mx-10">{vidTitles[currentTitle][1]}</p>
-          <div className="mt-5">
-            <a href="#quote-form" className="border-2 p-3 rounded hover:bg-white hover:text-black mr-5 transition duration-500">I'm Feeling Lucky</a>
-            <Link to="/services" className="bg-blue-400/30 border-2 border-blue-200 p-3 rounded hover:bg-blue-500 transition duration-500">Learn More</Link>
+          </div>
+          <div className="blob-cont">
+            <div className="yellow blob"></div>
+            <div className="red blob"></div>
+            <div className="green blob"></div>
           </div>
         </div>
+      </section> */}
+
+      <section className="bg-black">
+        <HeroVideo title={vidTitles[currentTitle][0]} subtitle={vidTitles[currentTitle][1]} />
       </section>
 
       <section className="flex flex-col-reverse md:flex-col">

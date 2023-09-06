@@ -13,6 +13,7 @@ import { NotFound } from "./pages/NotFound"
 import AOS from "aos"
 import './App.css'
 import 'aos/dist/aos.css'
+import { JobApplication } from "./pages/services/JobApplication"
 
 // Could've used descendant routes, but I think this is more managable
 // https://reactrouter.com/docs/en/v6/getting-started/overview#descendant-routes
@@ -38,6 +39,7 @@ function App() {
         <Route path="computer-science-programming" element={<ComputerScience />} />
         <Route path="thesis-writing" element={<ThesisWriting />} />
         <Route path="final-year-projects" element={<FinalYearProjects />} />
+        <Route path="job-application-help" element={<JobApplication />} />
       </Route>
       <Route path="/about" element={<About />} />
       <Route path="/contact" element={<Contact />} />
