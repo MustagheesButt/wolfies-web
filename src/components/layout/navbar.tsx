@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom"
 import { cn } from "@/lib/utils"
-// import { Icons } from "@/components/icons"
+import { Icons } from "@/components/icons"
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -10,7 +10,9 @@ import {
   NavigationMenuTrigger,
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu"
-import { forwardRef } from "react"
+import { forwardRef, useRef } from "react"
+import { Sheet, SheetClose, SheetContent, SheetDescription, SheetFooter, SheetHeader, SheetTitle, SheetTrigger } from "../ui/sheet"
+import { Button } from "../ui/button"
 
 const services: { title: string; href: string; description: string }[] = [
   {
@@ -70,6 +72,8 @@ export const Navbar = ({ fixed }) => {
   const month = new Date().getMonth()
   const season = (month >= 1 && month <= 8) ? "Summer" : (month >= 9 && month <= 10 ? "Winter" : "New Year")
 
+  const mobileForceCloseBtn = useRef<HTMLButtonElement>()
+
   return (
     //{showLoginModal ? <LoginModal closeCb={() => setShowLoginModal(false)} /> : ''}
     <>
@@ -82,7 +86,7 @@ export const Navbar = ({ fixed }) => {
           <img src={`/logo.png`} className=" w-[30px] md:w-[50px]" alt="Logo" />
         </Link>
 
-        <NavigationMenuList>
+        <NavigationMenuList className="hidden md:flex">
           <NavigationMenuItem>
             <NavigationMenuLink className={navigationMenuTriggerStyle()} asChild>
               <Link to='/'>Home</Link>
@@ -143,6 +147,45 @@ export const Navbar = ({ fixed }) => {
             </NavigationMenuLink>
           </NavigationMenuItem>
         </NavigationMenuList>
+
+        {/* For Mobile */}
+        <Sheet>
+          <SheetTrigger asChild className="md:hidden">
+            <Button variant="outline">
+              <Icons.Menu />
+            </Button>
+          </SheetTrigger>
+          <SheetContent>
+            <SheetHeader>
+              <SheetTitle>WolfieSolutions</SheetTitle>
+              <SheetDescription>
+                Your personal academic assistance service.
+              </SheetDescription>
+            </SheetHeader>
+
+            <div className="flex flex-col py-4">
+              <Link to='/' className={navigationMenuTriggerStyle()}>Home</Link>
+
+              <Link to='/services/assignments' className={navigationMenuTriggerStyle()} onClick={() => mobileForceCloseBtn.current.click()}>Assignments</Link>
+
+              {
+                services.map(s =>
+                  <Link key={s.href} to={s.href} className={navigationMenuTriggerStyle()} onClick={() => mobileForceCloseBtn.current.click()}>{s.title}</Link>
+                )
+              }
+
+              <Link to='/contact' className={navigationMenuTriggerStyle()}>Contact</Link>
+
+              <Link to='/about' className={navigationMenuTriggerStyle()}>About</Link>
+            </div>
+
+            <SheetFooter>
+              <SheetClose asChild>
+                <button className="hidden" ref={mobileForceCloseBtn}>Close</button>
+              </SheetClose>
+            </SheetFooter>
+          </SheetContent>
+        </Sheet>
       </NavigationMenu>
     </>
   )

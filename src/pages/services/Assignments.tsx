@@ -1,12 +1,12 @@
 import { useState, useEffect } from "react"
 import { Link } from "react-router-dom"
 import { Player } from "@lottiefiles/react-lottie-player"
-import { Head } from "../../components/layout/head"
-import { fetchReviews, Reviews } from "../../components/reviews"
-import { fetchPosts, Posts } from "../../components/posts"
-import { fetchSamples, Samples } from "../../components/samples"
-import { FAQSection } from "../../components/faqSection"
-import { R } from "../../res/R"
+import { Head } from "@/components/layout/head"
+import { fetchReviews, Reviews } from "@/components/reviews"
+import { fetchPosts, Posts } from "@/components/posts"
+import { fetchSamples, Samples } from "@/components/samples"
+import { FAQSection } from "@/components/faqSection"
+import { R } from "@/res/R"
 
 export const Assignments = () => {
   const [reviews, setReviews] = useState([])
@@ -35,7 +35,7 @@ export const Assignments = () => {
     <>
       <Head title="Assignments" />
       <section className="flex flex-col md:flex-row-reverse justify-around">
-        <Player src={R.anim.assignments} style={{ width: "400px", height: "400px" }} autoplay loop />
+        <Player src={R.anim.assignments} style={{ maxWidth: "400px" }} autoplay loop />
         <div className="flex flex-col justify-center w-1/3">
           <h1 className="text-5xl font-bold mb-5">Assignments</h1>
           <p className="text-2xl font-bold text-gray-600">Top rated assignment help service. Amazing results, reasonable prices.</p>

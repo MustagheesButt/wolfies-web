@@ -1,8 +1,9 @@
 import { R } from "@/res/R"
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import { Link } from "react-router-dom"
 
 const HeroVideo = ({ title, subtitle }) => {
+  const [currentWidth, setCurrentWidth] = useState(0)
 
   useEffect(() => {
     function setBgVid() {
@@ -19,10 +20,10 @@ const HeroVideo = ({ title, subtitle }) => {
     }
 
     window.onresize = () => {
-      if (window.lastWidth !== window.innerWidth) // only trigger when device width changes
+      if (currentWidth !== window.innerWidth) // only trigger when device width changes
         setBgVid()
     }
-    window.lastWidth = window.innerWidth
+    setCurrentWidth(window.innerWidth)
     setBgVid()
   }, [])
 

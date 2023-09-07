@@ -17,6 +17,7 @@
   border-radius: 3px;
   background-color: rgb(0, 200, 255);
   transform: none;
+  z-index: 20;
 }
 
 
