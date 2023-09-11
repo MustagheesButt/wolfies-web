@@ -1,6 +1,6 @@
-import { useEffect } from "react"
+import { FC, useEffect } from "react"
 
-export const Head = ({ title }) => {
+export const Head: FC<{title?: string}> = ({ title }) => {
   useEffect(() => {
     document.title = title ? title : "WolfieSolutions"
   })

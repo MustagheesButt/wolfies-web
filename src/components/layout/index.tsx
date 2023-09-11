@@ -1,10 +1,16 @@
+import { FC } from "react"
 import { Footer } from "./footer"
 import { Head } from "./head"
 import { Navbar } from "./navbar"
 import { SVGDefs } from "./svg_defs"
 // import { MessengerChat } from "react-messenger-chat-plugin"
 
-export const Layout = ({ fixedNav, children }) => {
+type LayoutProps = {
+  fixedNav?: boolean
+  children: JSX.Element[]
+}
+
+export const Layout: FC<LayoutProps> = ({ fixedNav, children }) => {
 
   return (
     <>
