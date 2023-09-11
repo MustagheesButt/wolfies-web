@@ -1,13 +1,14 @@
 import { Player } from "@lottiefiles/react-lottie-player"
 import { Link } from "react-router-dom"
 import { useEffect, useState } from "react"
-import { Layout } from "../components/layout"
-import { Reviews, fetchReviews } from "../components/reviews"
+import { Layout } from "@/components/layout"
+import { Reviews, fetchReviews } from "@/components/reviews"
 
-import { R } from "../res/R"
-import { FAQSection } from "../components/faqSection"
-import { MiniOrderForm } from "../components/miniOrderForm"
-import HeroVideo from "@/components/HeroVideo"
+import { R } from "@/res/R"
+import { FAQSection } from "@/components/faqSection"
+import { MiniOrderForm } from "@/components/miniOrderForm"
+import HeroVideo from "@/components/heroes/HeroVideo"
+import HeroGrainy from "@/components/heroes/HeroGrainy"
 
 export const Home = () => {
   const vidTitles = [
@@ -53,28 +54,27 @@ export const Home = () => {
 
   return (
     <Layout fixedNav={false}>
-      {/* https://codepen.io/Juxtopposed/pen/BaqLEQY */}
-      {/* <section className="hero-container">
-        <div className="hero">
-          <div className="hero-text">
-            <h1>Grainy Forever.</h1>
-            <p>Grainy animated blob for your modern website.</p>
-            <div className="buttons">
-              <a className="button primary" href="https://dribbble.com/shots/21248617-Daily-Design-Code-3-Grainy-Gradients-Blurry-Background" target="_blank">View Design</a>
-              <a className="button secondary" href="https://twitter.com/juxtopposed" target="_blank">Stay Tuned</a>
-            </div>
+      <section className="">
+        <HeroGrainy title="#1 Academic Help." subtitle="Get help with your assignments, thesis, research and more."
+          actions={
+            <>
+              <Link className="button primary" to="/services">Learn More</Link>
+              <Link className="button secondary" to="/contact">Contact</Link>
+            </>
+          }
+        />
+      </section>
 
-          </div>
-          <div className="blob-cont">
-            <div className="yellow blob"></div>
-            <div className="red blob"></div>
-            <div className="green blob"></div>
-          </div>
-        </div>
-      </section> */}
-
-      <section className="bg-black">
-        <HeroVideo title={vidTitles[currentTitle][0]} subtitle={vidTitles[currentTitle][1]} />
+      <section className="bg-black md:mx-20 md:mt-[-10rem]">
+        <HeroVideo
+          title={vidTitles[currentTitle][0]} subtitle={vidTitles[currentTitle][1]}
+        // actions={
+        //   <>
+        //     <a href="#quote-form" className="border-2 p-3 rounded hover:bg-white hover:text-black mr-5 transition duration-500">I'm Feeling Lucky</a>
+        //     <Link to="/services" className="bg-blue-400/30 border-2 border-blue-200 p-3 rounded hover:bg-blue-500 transition duration-500">Learn More</Link>
+        //   </>
+        // }
+        />
       </section>
 
       <section className="flex flex-col-reverse md:flex-col">

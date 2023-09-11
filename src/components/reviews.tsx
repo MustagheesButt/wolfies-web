@@ -1,4 +1,4 @@
-import { Http } from "../services/http"
+import { Http } from "@/services/http"
 
 // maybe also fetch and map here too
 export const Reviews = ({ reviews }) => {
@@ -20,7 +20,7 @@ export const Reviews = ({ reviews }) => {
   )
 }
 
-export async function fetchReviews(cb, categories=[]) {
+export async function fetchReviews(cb, categories: number|number[]=[]) {
   const params = new URLSearchParams({
     _embed: "wp:featuredmedia"
   })

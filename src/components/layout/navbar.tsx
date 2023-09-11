@@ -69,17 +69,17 @@ export const Navbar = ({ fixed }) => {
     classes = "fixed z-10 left-0 right-0 top-0"
   }
 
-  const month = new Date().getMonth()
-  const season = (month >= 1 && month <= 8) ? "Summer" : (month >= 9 && month <= 10 ? "Winter" : "New Year")
+  // const month = new Date().getMonth()
+  // const season = (month >= 1 && month <= 8) ? "Summer" : (month >= 9 && month <= 10 ? "Winter" : "New Year")
 
   const mobileForceCloseBtn = useRef<HTMLButtonElement>()
 
   return (
     //{showLoginModal ? <LoginModal closeCb={() => setShowLoginModal(false)} /> : ''}
     <>
-      <div className="basis-full p-3 text-center bg-red-500 text-white">
+      {/* <div className="basis-full p-3 text-center bg-red-500 text-white">
         {season} sale - 20% off on all services!
-      </div>
+      </div> */}
 
       <NavigationMenu className={`py-2 max-w-full bg-background ${classes}`}>
         <Link to='/' className="mr-20">

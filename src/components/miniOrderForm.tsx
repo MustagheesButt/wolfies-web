@@ -3,13 +3,13 @@ import {
   useRef,
   useState
 } from "react"
-import { Http } from "../services/http"
+import { Http } from "@/services/http"
 // import { useNavigate } from "react-router-dom"
 
 export const MiniOrderForm = () => {
   // const nav = useNavigate()
-  const email = useRef()
-  const courseCode = useRef()
+  const email = useRef<HTMLInputElement>()
+  const courseCode = useRef<HTMLInputElement>()
   // const category = useRef()
   // const deadline = useRef()
   const [status, setStatus] = useState("ready") // ready | sending | sent
@@ -91,14 +91,5 @@ export async function fetchServices(cb) {
 }
 
 async function submitRequest(reqData) {
-  const resp = await fetch(`${import.meta.env.VITE_API_URL}/wolfie/new-request`, {
-    method: 'POST',
-    body: JSON.stringify(reqData),
-    headers: {
-      'Content-Type': 'application/json'
-    }
-  })
-  const data = await resp.json()
-
-  return data
+  return await Http.post('/wolfie/new-request', reqData)
 }

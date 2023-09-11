@@ -1,4 +1,4 @@
-import { FC } from "react"
+import { FC, ReactNode } from "react"
 import { Footer } from "./footer"
 import { Head } from "./head"
 import { Navbar } from "./navbar"
@@ -7,7 +7,7 @@ import { SVGDefs } from "./svg_defs"
 
 type LayoutProps = {
   fixedNav?: boolean
-  children: JSX.Element[]
+  children: ReactNode
 }
 
 export const Layout: FC<LayoutProps> = ({ fixedNav, children }) => {

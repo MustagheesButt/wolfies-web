@@ -1,8 +1,13 @@
 import { R } from "@/res/R"
-import { useEffect, useState } from "react"
-import { Link } from "react-router-dom"
+import { FC, ReactNode, useEffect, useState } from "react"
 
-const HeroVideo = ({ title, subtitle }) => {
+type HeroVideoProps = {
+  title: string
+  subtitle: string
+  actions?: ReactNode
+}
+
+const HeroVideo: FC<HeroVideoProps> = ({ title, subtitle, actions }) => {
   const [currentWidth, setCurrentWidth] = useState(0)
 
   useEffect(() => {
@@ -29,7 +34,11 @@ const HeroVideo = ({ title, subtitle }) => {
 
   return (
     <div className="relative">
-      <video autoPlay muted loop style={{ height: "100%" }} className="mx-auto" poster={`/static/images/poster.webp`}>
+      <video
+        autoPlay muted loop
+        style={{ height: "100%" }}
+        className="mx-auto" poster={`/static/images/poster.webp`}
+      >
         <source src='' type="video/webm" />
       </video>
 
@@ -37,8 +46,7 @@ const HeroVideo = ({ title, subtitle }) => {
         <h1 className="text-4xl md:text-6xl font-bold">{title}</h1>
         <p className="text-2xl md:text-3xl my-5 font-serif italic mx-10">{subtitle}</p>
         <div className="mt-5">
-          <a href="#quote-form" className="border-2 p-3 rounded hover:bg-white hover:text-black mr-5 transition duration-500">I'm Feeling Lucky</a>
-          <Link to="/services" className="bg-blue-400/30 border-2 border-blue-200 p-3 rounded hover:bg-blue-500 transition duration-500">Learn More</Link>
+          {actions}
         </div>
       </div>
     </div>
