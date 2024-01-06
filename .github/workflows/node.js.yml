@@ -51,7 +51,8 @@ jobs:
         host: ${{ secrets.SSH_HOST }}
         port: ${{ secrets.SSH_PORT }}
         username: ${{ secrets.SSH_USERNAME }}
-        key: ${{ secrets.SSH_PK }}
+        #key: ${{ secrets.SSH_PK }}
+        password: ${{ secrets.SSH_PK }}
         script: |
           shopt -s extglob
           rm -rf domains/wolfiesolutions.com/public_html/!(api.wolfiesolutions.com)
@@ -64,7 +65,8 @@ jobs:
         host: ${{ secrets.SSH_HOST }}
         port: ${{ secrets.SSH_PORT }}
         username: ${{ secrets.SSH_USERNAME }}
-        key: ${{ secrets.SSH_PK }}
+        #key: ${{ secrets.SSH_PK }}
+        password: ${{ secrets.SSH_PK }}
         source: "./*"
         target: "domains/wolfiesolutions.com/public_html/"
 
@@ -74,7 +76,8 @@ jobs:
         host: ${{ secrets.SSH_HOST }}
         port: ${{ secrets.SSH_PORT }}
         username: ${{ secrets.SSH_USERNAME }}
-        key: ${{ secrets.SSH_PK }}
+        #key: ${{ secrets.SSH_PK }}
+        password: ${{ secrets.SSH_PK }}
         script: |
           mv domains/wolfiesolutions.com/public_html/functions.php domains/wolfiesolutions.com/public_html/api.wolfiesolutions.com/wp-content/themes/wolfies/
           mv domains/wolfiesolutions.com/public_html/style.css domains/wolfiesolutions.com/public_html/api.wolfiesolutions.com/wp-content/themes/wolfies/
